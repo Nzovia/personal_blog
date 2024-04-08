@@ -33,4 +33,6 @@ public class BlogPost extends PO {
     @NotEmpty(message = "description required")
     private String blogDescription;
 
+    //Todo. one blog_post many comments
+
 }

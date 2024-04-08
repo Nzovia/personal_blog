@@ -24,15 +24,20 @@ import lombok.Setter;
 @NoArgsConstructor
 public class SystemUser extends PO {
     @Column(name = "first_name")
-    @NotEmpty(message = "first name required")
+    @NotEmpty(message = "first name is required")
     private String FirstName;
     @Column(name = "last_name")
-    @NotEmpty(message = "last name required")
+    @NotEmpty(message = "last name is required")
     private String lastName;
     private String userName;
     @Column(name = "user_email")
-    @NotEmpty(message = "user email required")
+    @NotEmpty(message = "user email is required")
     private String userEmail;
+    @Column(name = "user_password", length = 8)
+    @NotEmpty(message = "password is required")
+    private String userPassword;
+
+    //Todo. OneUser to many BlogPosts
 
 
 }

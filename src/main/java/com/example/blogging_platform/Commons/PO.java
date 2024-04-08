@@ -14,7 +14,9 @@ import java.time.LocalDateTime;
 public class PO {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-     private Long id;
+    private Long id;
+    @Column(name = "uuid", unique = true)
+    private String uuid;
     @Column(name = "created_by")
     private String createdBy;
     @Column(name = "created_at")
@@ -27,7 +29,6 @@ public class PO {
     private LocalDateTime deletedBy;
     @Column(name = "deleted_at")
     private LocalDateTime deletedAt;
-
 
 
 }

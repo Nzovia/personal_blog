@@ -1,17 +1,12 @@
 package com.example.blogging_platform.models;
 
 import com.example.blogging_platform.Commons.PO;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 /**
  * @author Nicholas Nzovia
@@ -20,11 +15,12 @@ import lombok.Setter;
  */
 
 @Entity
-@Table(name = "system_user")
+@Table(name = "tb_system_users")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class SystemUser extends PO {
     @Column(name = "first_name", nullable = false)
     @NotBlank(message = "first name is required")
@@ -42,8 +38,5 @@ public class SystemUser extends PO {
     @NotBlank(message = "password is required")
     @Size(min = 8, max = 12)
     private String userPassword;
-
-    //Todo. OneUser to many BlogPosts
-
 
 }

@@ -1,16 +1,11 @@
 package com.example.blogging_platform.models;
 
 import com.example.blogging_platform.Commons.PO;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.validation.annotation.Validated;
 
 /**
@@ -20,11 +15,12 @@ import org.springframework.validation.annotation.Validated;
  */
 
 @Entity
-@Table(name = "blog_posts")
+@Table(name = "tb_blog_posts")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class BlogPost extends PO {
     @Column(name = "blog_title")
     @NotBlank(message = "title required")
@@ -33,6 +29,12 @@ public class BlogPost extends PO {
     @NotBlank(message = "description required")
     private String blogDescription;
 
-    //Todo. one blog_post many comments
+    //OneUser creates many BlogPosts
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(
+            name = "user_uuid",
+            referencedColumnName = "uuid"
+    )
+    private SystemUser systemUser;
 
 }

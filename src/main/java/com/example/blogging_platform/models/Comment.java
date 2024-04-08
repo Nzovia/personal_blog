@@ -1,15 +1,10 @@
 package com.example.blogging_platform.models;
 
 import com.example.blogging_platform.Commons.PO;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 /**
  * @author Nicholas Nzovia
@@ -17,15 +12,30 @@ import lombok.Setter;
  * @Contact: itsdevelopernic22@gmail.com
  */
 @Entity
-@Table(name = "Comments")
+@Table(name = "tb_comments")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
+@Builder
 public class Comment extends PO {
     @Column(name = "comment_body")
     @NotBlank(message = "commentBody is required")
     private String commentBody;
 
-    //Todo. OneToOne relationship with blogVisitor
+    //many comments are associated to one BlogPost
+    @ManyToOne
+    @JoinColumn(
+            name = "blog_uuid",
+            referencedColumnName = "uuid"
+    )
+    private BlogPost blogPost;
+
+    //Many comments made by one visitor
+    @ManyToOne
+    @JoinColumn(
+            name = "visitor_uuid",
+            referencedColumnName = "uuid"
+    )
+    private BlogVisitor blogVisitor;
 }

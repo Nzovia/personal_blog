@@ -6,10 +6,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 /**
  * @author Nicholas Nzovia
@@ -18,11 +15,12 @@ import lombok.Setter;
  */
 
 @Entity
-@Table(name = "blog_visitor")
+@Table(name = "tb_blog_visitors")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
+@Builder
 public class BlogVisitor extends PO {
     @Column(name = "visitor_email")
     @NotBlank(message = "email is required")

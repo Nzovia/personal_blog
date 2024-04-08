@@ -15,7 +15,7 @@ public class PO {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @Column(name = "uuid", unique = true)
+    @Column(name = "uuid", unique = true, nullable = false)
     private String uuid;
     @Column(name = "created_by")
     private String createdBy;

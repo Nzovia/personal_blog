@@ -7,8 +7,8 @@ spring:
     name: blogging_platform
   datasource:
     url: jdbc:mysql://localhost:3306/blog_posts
-    username: root
-    password: root
+    username:
+    password:
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     show-sql: true

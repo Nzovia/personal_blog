@@ -4,6 +4,7 @@ import com.example.blogging_platform.Commons.PO;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -23,7 +24,7 @@ import lombok.Setter;
 @Setter
 public class Comment extends PO {
     @Column(name = "comment_body")
-    @NotEmpty(message = "commentBody is required")
+    @NotBlank(message = "commentBody is required")
     private String commentBody;
 
     //Todo. OneToOne relationship with blogVisitor

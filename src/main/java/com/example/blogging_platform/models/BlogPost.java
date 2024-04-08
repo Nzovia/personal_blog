@@ -27,10 +27,10 @@ import org.springframework.validation.annotation.Validated;
 @NoArgsConstructor
 public class BlogPost extends PO {
     @Column(name = "blog_title")
-    @NotEmpty(message = "title required")
+    @NotBlank(message = "title required")
     private String blogTitle;
     @Column(name = "blog_body")
-    @NotEmpty(message = "description required")
+    @NotBlank(message = "description required")
     private String blogDescription;
 
     //Todo. one blog_post many comments

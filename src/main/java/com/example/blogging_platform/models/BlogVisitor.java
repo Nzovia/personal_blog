@@ -4,6 +4,7 @@ import com.example.blogging_platform.Commons.PO;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -24,10 +25,10 @@ import lombok.Setter;
 @Setter
 public class BlogVisitor extends PO {
     @Column(name = "visitor_email")
-    @NotEmpty(message = "email is required")
+    @NotBlank(message = "email is required")
     private String visitorEmail;
     @Column(name = "visitor_password")
-    @NotEmpty(message = "password is required")
+    @NotBlank(message = "password is required")
     private String visitorPassword;
 
     //One visitor many comments

@@ -24,7 +24,7 @@ import lombok.*;
 public class SystemUser extends PO {
     @Column(name = "first_name", nullable = false)
     @NotBlank(message = "first name is required")
-    private String FirstName;
+    private String firstName;
     @Column(name = "last_name", nullable = false)
     @NotBlank(message = "last name is required")
     private String lastName;

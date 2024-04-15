@@ -2,6 +2,7 @@ package com.example.blogging_platform.repositories;
 
 import com.example.blogging_platform.models.SystemUser;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 /**
  * @author Nicholas Nzovia
@@ -9,6 +10,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @Contact: itsdevelopernic22@gmail.com
  */
 
+@Repository
 public interface SystemUserRepository extends JpaRepository<SystemUser,Long> {
-    SystemUser existsByEmail(String userEmail);
+    boolean existsByUserEmail(String userEmail);
 }

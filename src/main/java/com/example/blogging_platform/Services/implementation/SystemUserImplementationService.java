@@ -19,10 +19,10 @@ public class SystemUserImplementationService implements SystemUserService {
     private final SystemUserRepository systemUserRepository;
     private  final PasswordEncoder passwordEncoder;
     @Override
-    public SystemUser createUser(SystemUserRequest systemUserRequest) {
+    public SystemUser createUser(SystemUserRequest systemUserRequest) throws ResourceTakenException{
         //throwing exception the email is already taken
-        var emailExists = systemUserRepository.existsByEmail(systemUserRequest.getUserEmail());
-        if(emailExists != null){
+        var emailExists = systemUserRepository.existsByUserEmail(systemUserRequest.getUserEmail());
+        if(!emailExists){
             throw new ResourceTakenException("Email already exists");
         }
         SystemUser systemUser = new SystemUser();

@@ -1,6 +1,10 @@
 package com.example.blogging_platform.Commons;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
 
@@ -11,6 +15,10 @@ import java.time.LocalDateTime;
  */
 
 @MappedSuperclass
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
 public class PO {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

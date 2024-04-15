@@ -13,4 +13,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface SystemUserRepository extends JpaRepository<SystemUser,Long> {
     boolean existsByUserEmail(String userEmail);
+    boolean existsByUuid(String generateUniqueUUIDString);
 }

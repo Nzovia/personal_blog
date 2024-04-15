@@ -6,6 +6,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import static com.example.blogging_platform.Utils.GenerateRandomUUIDUtil.generateUniqueUUIDString;
+
 @SpringBootApplication
 public class BloggingPlatformApplication {
 

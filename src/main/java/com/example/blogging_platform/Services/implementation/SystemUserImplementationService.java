@@ -23,7 +23,8 @@ import static com.example.blogging_platform.Utils.GenerateRandomUUIDUtil.generat
 public class SystemUserImplementationService implements SystemUserService {
     private final SystemUserRepository systemUserRepository;
     private  final PasswordEncoder passwordEncoder;
-    private final GenerateRandomUUIDUtil generateRandomUUidUtil;
+
+    //Creating User Account.
     @Override
     public SystemUser createUser(SystemUserRequest systemUserRequest) throws ResourceTakenException{
         //throwing exception the email is already taken
@@ -33,7 +34,7 @@ public class SystemUserImplementationService implements SystemUserService {
         }
         boolean uuidExists = systemUserRepository.existsByUuid(generateUniqueUUIDString());
         if(!uuidExists){
-            throw new ResourceTakenException("There is a UUID match Please re-register");
+            throw new ResourceTakenException("There is a UUID collision Please re-register");
         }
         SystemUser systemUser = new SystemUser();
         systemUser.setUuid(generateUniqueUUIDString());
@@ -44,6 +45,13 @@ public class SystemUserImplementationService implements SystemUserService {
         systemUser.setCreatedAt(getCurrentLocalDateTime());
         systemUserRepository.save(systemUser);
         return systemUser;
+    }
+
+    //Getting User Profile details
+    @Override
+    public SystemUser getSystemUserProfile(String uuid) {
+        SystemUser systemUser = systemUserRepository.findByUuid(uuid);
+        return null;
     }
 
     private LocalDateTime getCurrentLocalDateTime() {

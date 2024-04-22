@@ -1,5 +1,6 @@
 package com.example.blogging_platform.Services.interfaces;
 
+import com.example.blogging_platform.dtos.BlogPostDeleteResponse;
 import com.example.blogging_platform.dtos.BlogPostRequest;
 import com.example.blogging_platform.dtos.BlogPostResponse;
 import com.example.blogging_platform.models.BlogPost;
@@ -17,8 +18,8 @@ import java.util.List;
 public interface BlogPostService {
     void createBlogPost(BlogPostRequest blogPostRequest);
     BlogPost updateBlogPost(BlogPostRequest blogPostRequest, String uuid);
-    List<BlogPostResponse> listAllBlogPosts();
-    BlogPostResponse getBlogPostByUuid(String uuid);
+    List<BlogPost> listAllBlogPosts();
+    BlogPost getBlogPostByUuid(String uuid);
     BlogPostResponse searchBlogPostByBlogName(String blogPostTitle);
-    void delete(String uuid);
+    BlogPostDeleteResponse deleteBlogPostByUUid(String uuid);
 }

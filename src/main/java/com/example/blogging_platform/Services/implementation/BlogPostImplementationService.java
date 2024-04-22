@@ -3,6 +3,7 @@ package com.example.blogging_platform.Services.implementation;
 import com.example.blogging_platform.ExceptionHandling.PostRequestException;
 import com.example.blogging_platform.ExceptionHandling.ResourceNotFoundException;
 import com.example.blogging_platform.Services.interfaces.BlogPostService;
+import com.example.blogging_platform.dtos.BlogPostDeleteResponse;
 import com.example.blogging_platform.dtos.BlogPostRequest;
 import com.example.blogging_platform.dtos.BlogPostResponse;
 import com.example.blogging_platform.models.BlogPost;
@@ -69,13 +70,29 @@ public class BlogPostImplementationService implements BlogPostService {
     }
 
     @Override
-    public List<BlogPostResponse> listAllBlogPosts() {
-        return null;
+    public List<BlogPost> listAllBlogPosts() throws PostRequestException{
+        try{
+            return blogPostRepository.findAll();
+
+        }catch (Exception e){
+            throw new PostRequestException("Error occurred while retrieving blog posts");
+        }
     }
 
     @Override
-    public BlogPostResponse getBlogPostByUuid(String uuid) {
-        return null;
+    public BlogPost getBlogPostByUuid(String uuid) throws ResourceNotFoundException{
+        BlogPost foundBlogPost = blogPostRepository.findByUuid(uuid);
+        String message = "Unable to retrieve BlogPost";
+        try{
+            if(foundBlogPost ==null){
+                throw new ResourceNotFoundException(message);
+            }else {
+                return foundBlogPost;
+            }
+
+        }catch (Exception exception){
+            throw new ResourceNotFoundException(message);
+        }
     }
 
     @Override
@@ -83,7 +100,22 @@ public class BlogPostImplementationService implements BlogPostService {
         return null;
     }
     @Override
-    public void delete(String uuid) {
+    public BlogPostDeleteResponse deleteBlogPostByUUid(String uuid) {
+        BlogPost foundBlogPostToDelete = blogPostRepository.findByUuid(uuid);
+        BlogPostDeleteResponse response = new BlogPostDeleteResponse();
+        response.setDeletionMessage("BlogPost Deleted Successfully");
+        String message = "Unable to retrieve BlogPost";
+        try{
+            if(foundBlogPostToDelete ==null){
+                throw new ResourceNotFoundException(message);
+            }else {
+                blogPostRepository.deleteByUuid(uuid);
+                return response;
+            }
+
+        }catch (Exception exception){
+            throw new ResourceNotFoundException(message);
+        }
 
     }
 }

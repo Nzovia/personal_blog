@@ -14,4 +14,6 @@ import org.springframework.stereotype.Repository;
 public interface BlogPostRepository extends JpaRepository<BlogPost,Long> {
 
     BlogPost findByUuid(String uuid);
+
+    void deleteByUuid(String uuid);
 }

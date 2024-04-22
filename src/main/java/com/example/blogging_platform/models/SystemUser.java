@@ -53,8 +53,8 @@ public class SystemUser extends PO {
     }
 
     public SystemUser(Long id, String uuid, String createdBy,
-                      LocalDateTime createdAt, LocalDateTime updatedBy,
-                      LocalDateTime updatedAt, LocalDateTime deletedBy,
+                      LocalDateTime createdAt, String updatedBy,
+                      LocalDateTime updatedAt, String deletedBy,
                       LocalDateTime deletedAt, String firstName,
                       String lastName, String userName,
                       String userEmail, String userPassword) {

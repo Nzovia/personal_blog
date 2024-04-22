@@ -1,8 +1,11 @@
 package com.example.blogging_platform.Services.implementation;
 
+import com.example.blogging_platform.ExceptionHandling.PostRequestException;
 import com.example.blogging_platform.Services.interfaces.BlogPostService;
 import com.example.blogging_platform.dtos.BlogPostRequest;
 import com.example.blogging_platform.dtos.BlogPostResponse;
+import com.example.blogging_platform.models.BlogPost;
+import com.example.blogging_platform.repositories.BlogPostRepository;
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;
@@ -15,8 +18,22 @@ import java.util.List;
 
 @RequiredArgsConstructor
 public class BlogPostImplementationService implements BlogPostService {
+    private final BlogPostRepository blogPostRepository;
     @Override
-    public void createBlogPost(BlogPostRequest blogPostRequest) {
+    public void createBlogPost(BlogPostRequest blogPostRequest) throws PostRequestException {
+        BlogPost blogPost = new BlogPost();
+        try{
+            blogPost.setBlogTitle(blogPostRequest.getBlogTitle());
+            blogPost.setBlogSubTitles(blogPostRequest.getBlogSubTitles());
+            blogPost.setBlogDescription(blogPostRequest.getBlogDescription());
+            blogPost.setCreatedBy(""); //Todo. Get currently login user uuid -> add util service GetCurrently login user
+            blogPost.setCreatedAt(null); //Todo. Create a util function to format date into a specific way that will posted here
+
+            //save to the database
+            blogPostRepository.save(blogPost);
+        }catch (Exception exception){
+            throw new PostRequestException("Error occurred, unable to add new blog post");
+        }
 
     }
 

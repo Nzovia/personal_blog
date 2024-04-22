@@ -16,7 +16,7 @@ import java.util.List;
 @Service
 public interface BlogPostService {
     void createBlogPost(BlogPostRequest blogPostRequest);
-    void updateBlogPost(BlogPostRequest blogPostRequest);
+    BlogPost updateBlogPost(BlogPostRequest blogPostRequest, String uuid);
     List<BlogPostResponse> listAllBlogPosts();
     BlogPostResponse getBlogPostByUuid(String uuid);
     BlogPostResponse searchBlogPostByBlogName(String blogPostTitle);

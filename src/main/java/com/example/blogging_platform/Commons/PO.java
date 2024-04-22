@@ -30,7 +30,7 @@ public class PO {
     @Column(name = "created_at")
     private LocalDateTime createdAt;
     @Column(name = "updated_by")
-    private LocalDateTime updatedBy;
+    private String updatedBy;
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
     @Column(name = "deleted_by")

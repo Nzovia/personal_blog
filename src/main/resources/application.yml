@@ -1,3 +1,4 @@
+
 server:
   port: 9000
   servlet:
@@ -14,3 +15,6 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: none
+  security:
+    jwt:
+      secret:

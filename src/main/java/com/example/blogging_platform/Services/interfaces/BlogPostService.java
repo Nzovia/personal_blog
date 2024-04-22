@@ -1,6 +1,7 @@
 package com.example.blogging_platform.Services.interfaces;
 
 import com.example.blogging_platform.dtos.BlogPostRequest;
+import com.example.blogging_platform.dtos.BlogPostResponse;
 import com.example.blogging_platform.models.BlogPost;
 import org.springframework.stereotype.Service;
 
@@ -14,20 +15,10 @@ import java.util.List;
 
 @Service
 public interface BlogPostService {
-    private void delete(String uuid){
-
-    }
-    private void createBlogPost(BlogPostRequest blogPostRequest){
-
-    }
-    private void updateBlogPost(BlogPostRequest blogPostRequest){
-
-    }
-    private List<BlogPost> listAllBlogPosts(){
-        return null;
-    }
-
-    private BlogPost getBlogPostByUuid(String uuid){
-        return  null;
-    }
+    void createBlogPost(BlogPostRequest blogPostRequest);
+    void updateBlogPost(BlogPostRequest blogPostRequest);
+    List<BlogPostResponse> listAllBlogPosts();
+    BlogPostResponse getBlogPostByUuid(String uuid);
+    BlogPostResponse searchBlogPostByBlogName(String blogPostTitle);
+    void delete(String uuid);
 }

@@ -25,6 +25,9 @@ public class BlogPost extends PO {
     @Column(name = "blog_title")
     @NotBlank(message = "title required")
     private String blogTitle;
+
+    @Column(name = "blog_sub_title")
+    private String blogSubTitles;
     @Column(name = "blog_body")
     @NotBlank(message = "description required")
     private String blogDescription;

@@ -9,6 +9,8 @@ import jakarta.validation.constraints.Size;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * @author Nicholas Nzovia
@@ -37,6 +39,15 @@ public class SystemUser extends PO {
     @NotBlank(message = "password is required")
     @Size(min = 8, max = 12)
     private String userPassword;
+
+    //manyTomany relationship system users and roles
+    @ManyToMany
+    @JoinTable(
+            name = "user_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id")
+    )
+    private Set<Role> roles = new HashSet<>();
 
     public SystemUser() {
     }

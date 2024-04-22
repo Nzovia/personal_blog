@@ -2,7 +2,6 @@ package com.example.blogging_platform.Services.implementation;
 
 import com.example.blogging_platform.ExceptionHandling.ResourceTakenException;
 import com.example.blogging_platform.Services.interfaces.SystemUserService;
-import com.example.blogging_platform.Utils.GenerateRandomUUIDUtil;
 import com.example.blogging_platform.dtos.SystemUserRequest;
 import com.example.blogging_platform.models.SystemUser;
 import com.example.blogging_platform.repositories.SystemUserRepository;

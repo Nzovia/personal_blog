@@ -2,6 +2,7 @@ package com.example.blogging_platform.controllers;
 
 import com.example.blogging_platform.Services.interfaces.SystemUserService;
 import com.example.blogging_platform.dtos.SystemUserRequest;
+import com.example.blogging_platform.models.SystemUser;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,9 +23,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class SystemUserController {
     private SystemUserService systemUserService;
     @PostMapping("add")
-    public ResponseEntity CreateSystemUserAccount(@RequestBody SystemUserRequest systemUserRequest){
+    public ResponseEntity<SystemUser> CreateSystemUserAccount(@RequestBody SystemUserRequest systemUserRequest){
 
-        return  new ResponseEntity(systemUserService.createUser(systemUserRequest), HttpStatus.CREATED);
+        return  new ResponseEntity<>(systemUserService.createUser(systemUserRequest), HttpStatus.CREATED);
 
     }
 }

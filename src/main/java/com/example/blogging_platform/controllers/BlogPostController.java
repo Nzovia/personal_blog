@@ -50,5 +50,12 @@ public class BlogPostController {
         var deleteResponse = blogPostService.deleteBlogPostByUUid(uuid);
         return ResponseEntity.ok(deleteResponse.defaultDeletionMessage());
     }
+
+    @GetMapping("all")
+    private ResponseEntity<List<BlogPost>>  getAllBlogPosts(){
+        List<BlogPost> allBlogPosts = blogPostService.listAllBlogPosts();
+        return ResponseEntity.ok(allBlogPosts);
+    }
+
     //Todo. share api, to generate a link and share.
 }

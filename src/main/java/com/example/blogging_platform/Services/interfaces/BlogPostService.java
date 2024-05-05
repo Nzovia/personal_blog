@@ -20,6 +20,6 @@ public interface BlogPostService {
     BlogPost updateBlogPost(BlogPostRequest blogPostRequest, String uuid);
     List<BlogPost> listAllBlogPosts();
     BlogPost getBlogPostByUuid(String uuid);
-    BlogPostResponse searchBlogPostByBlogName(String blogPostTitle);
+    List<BlogPost> searchBlogPostByBlogName(String searchText);
     BlogPostDeleteResponse deleteBlogPostByUUid(String uuid);
 }

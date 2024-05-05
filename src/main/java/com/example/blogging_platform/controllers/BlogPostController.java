@@ -1,13 +1,14 @@
 package com.example.blogging_platform.controllers;
 
 import com.example.blogging_platform.Services.interfaces.BlogPostService;
-import com.example.blogging_platform.dtos.BlogPostDeleteResponse;
 import com.example.blogging_platform.dtos.BlogPostRequest;
 import com.example.blogging_platform.models.BlogPost;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * @author Nicholas Nzovia
@@ -16,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
  */
 
 @RestController
-@RequestMapping("api/v1/blog_posts")
+@RequestMapping("api/v1/blog_posts/")
 @RequiredArgsConstructor
 public class BlogPostController {
     private final BlogPostService blogPostService;
@@ -27,18 +28,27 @@ public class BlogPostController {
         return new ResponseEntity<>(blogCreated,HttpStatus.CREATED);
     }
 
-    //Todo. Search blog by title
+    @GetMapping("search")
+    private ResponseEntity<List<BlogPost>>
+    searchBlogPosts(@RequestParam String searchText){
+        List<BlogPost> foundBlogPosts = blogPostService.searchBlogPostByBlogName(searchText);
+        if(!foundBlogPosts.isEmpty()){
+            return ResponseEntity.ok(foundBlogPosts);
+        }else{
+            return ResponseEntity.noContent().build();
+        }
+    }
     @PutMapping("edit/{uuid}")
     private ResponseEntity<BlogPost> updateBlogPostTitleOrDescription(
             @PathVariable String uuid, @RequestBody BlogPostRequest blogPostRequest){
        var updateBlogPost =  blogPostService.updateBlogPost(blogPostRequest,uuid);
-       return new ResponseEntity<>(updateBlogPost,HttpStatus.OK);
+       return  ResponseEntity.ok(updateBlogPost);
 
     }
     @DeleteMapping("delete/{uuid}")
     private ResponseEntity<String> deleteBlogPostByUuid(@PathVariable String uuid){
         var deleteResponse = blogPostService.deleteBlogPostByUUid(uuid);
-        return  new ResponseEntity<>(deleteResponse.defaultDeletionMessage(), HttpStatus.OK);
+        return ResponseEntity.ok(deleteResponse.defaultDeletionMessage());
     }
     //Todo. share api, to generate a link and share.
 }

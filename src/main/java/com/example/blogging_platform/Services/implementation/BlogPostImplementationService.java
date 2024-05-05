@@ -5,10 +5,10 @@ import com.example.blogging_platform.ExceptionHandling.ResourceNotFoundException
 import com.example.blogging_platform.Services.interfaces.BlogPostService;
 import com.example.blogging_platform.dtos.BlogPostDeleteResponse;
 import com.example.blogging_platform.dtos.BlogPostRequest;
-import com.example.blogging_platform.dtos.BlogPostResponse;
 import com.example.blogging_platform.models.BlogPost;
 import com.example.blogging_platform.repositories.BlogPostRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -19,7 +19,7 @@ import static com.example.blogging_platform.Utils.GenerateRandomUUIDUtil.generat
  * @On 22/04/2024
  * @Contact: itsdevelopernic22@gmail.com
  */
-
+@Service
 @RequiredArgsConstructor
 public class BlogPostImplementationService implements BlogPostService {
     private final BlogPostRepository blogPostRepository;
@@ -101,8 +101,8 @@ public class BlogPostImplementationService implements BlogPostService {
     }
 
     @Override
-    public BlogPostResponse searchBlogPostByBlogName(String blogPostTitle) {
-        return null;
+    public List<BlogPost> searchBlogPostByBlogName(String searchText) {
+        return blogPostRepository.findBlogPostsBySearchText(searchText);
     }
     @Override
     public BlogPostDeleteResponse deleteBlogPostByUUid(String uuid) {

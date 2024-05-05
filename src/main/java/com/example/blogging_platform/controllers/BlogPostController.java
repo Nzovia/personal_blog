@@ -4,6 +4,7 @@ import com.example.blogging_platform.Services.interfaces.BlogPostService;
 import com.example.blogging_platform.dtos.BlogPostRequest;
 import com.example.blogging_platform.models.BlogPost;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -48,8 +49,11 @@ public class BlogPostController {
         return ResponseEntity.ok(deleteResponse.defaultDeletionMessage());
     }
     @GetMapping("all")
-    private ResponseEntity<List<BlogPost>>  getAllBlogPosts(){
-        List<BlogPost> allBlogPosts = blogPostService.listAllBlogPosts();
+    private ResponseEntity<Page<BlogPost>>  getAllBlogPosts(
+            @RequestParam(defaultValue = "0") int pageNo,
+            @RequestParam(defaultValue = "10") int pageSize
+    ){
+        Page<BlogPost> allBlogPosts = blogPostService.listAllBlogPosts(pageNo,pageSize);
         return ResponseEntity.ok(allBlogPosts);
     }
     @GetMapping("one/{uuid}")

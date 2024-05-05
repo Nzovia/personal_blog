@@ -8,6 +8,9 @@ import com.example.blogging_platform.dtos.BlogPostRequest;
 import com.example.blogging_platform.models.BlogPost;
 import com.example.blogging_platform.repositories.BlogPostRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -71,9 +74,10 @@ public class BlogPostImplementationService implements BlogPostService {
     }
 
     @Override
-    public List<BlogPost> listAllBlogPosts() throws PostRequestException{
+    public Page<BlogPost> listAllBlogPosts(int pageNo, int pageSize) throws PostRequestException{
         try{
-            return blogPostRepository.findAll();
+            Pageable pageable = PageRequest.of(pageNo, pageSize);
+            return blogPostRepository.findAll(pageable);
         }catch (Exception e){
             throw new PostRequestException("Error occurred while retrieving blog posts");
         }

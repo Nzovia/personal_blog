@@ -3,6 +3,7 @@ package com.example.blogging_platform.controllers;
 import com.example.blogging_platform.Services.interfaces.BlogPostService;
 import com.example.blogging_platform.dtos.BlogPostDeleteResponse;
 import com.example.blogging_platform.dtos.BlogPostRequest;
+import com.example.blogging_platform.models.BlogPost;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,7 +28,13 @@ public class BlogPostController {
     }
 
     //Todo. Search blog by title
-    //Todo. edit blog post both body and description
+    @PutMapping("edit/{uuid}")
+    private ResponseEntity<BlogPost> updateBlogPostTitleOrDescription(
+            @PathVariable String uuid, @RequestBody BlogPostRequest blogPostRequest){
+       var updateBlogPost =  blogPostService.updateBlogPost(blogPostRequest,uuid);
+       return new ResponseEntity<>(updateBlogPost,HttpStatus.OK);
+
+    }
     @DeleteMapping("delete/{uuid}")
     private ResponseEntity<String> deleteBlogPostByUuid(@PathVariable String uuid){
         var deleteResponse = blogPostService.deleteBlogPostByUUid(uuid);

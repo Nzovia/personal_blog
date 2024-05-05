@@ -44,9 +44,7 @@ public class BlogPostImplementationService implements BlogPostService {
         }catch (Exception exception){
             throw new PostRequestException("Error occurred, unable to add new blog post");
         }
-
     }
-
     @Override
     public BlogPost updateBlogPost(BlogPostRequest blogPostRequest, String uuid)
             throws ResourceNotFoundException {
@@ -70,15 +68,12 @@ public class BlogPostImplementationService implements BlogPostService {
         }catch (Exception e){
             throw new ResourceNotFoundException(e.getMessage());
         }
-
-
     }
 
     @Override
     public List<BlogPost> listAllBlogPosts() throws PostRequestException{
         try{
             return blogPostRepository.findAll();
-
         }catch (Exception e){
             throw new PostRequestException("Error occurred while retrieving blog posts");
         }

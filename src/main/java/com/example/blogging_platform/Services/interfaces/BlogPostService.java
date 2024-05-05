@@ -2,7 +2,6 @@ package com.example.blogging_platform.Services.interfaces;
 
 import com.example.blogging_platform.dtos.BlogPostDeleteResponse;
 import com.example.blogging_platform.dtos.BlogPostRequest;
-import com.example.blogging_platform.dtos.BlogPostResponse;
 import com.example.blogging_platform.models.BlogPost;
 import org.springframework.stereotype.Service;
 

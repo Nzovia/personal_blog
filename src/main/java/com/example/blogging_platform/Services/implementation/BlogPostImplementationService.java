@@ -24,7 +24,7 @@ import static com.example.blogging_platform.Utils.GenerateRandomUUIDUtil.generat
 public class BlogPostImplementationService implements BlogPostService {
     private final BlogPostRepository blogPostRepository;
     @Override
-    public void createBlogPost(BlogPostRequest blogPostRequest) throws PostRequestException {
+    public String createBlogPost(BlogPostRequest blogPostRequest) throws PostRequestException {
         BlogPost blogPost = new BlogPost();
         try{
             blogPost.setUuid(generateUniqueUUIDString());
@@ -35,7 +35,12 @@ public class BlogPostImplementationService implements BlogPostService {
             blogPost.setCreatedAt(null); //Todo. Create a util function to format date into a specific way that will posted here
 
             //save to the database
-            blogPostRepository.save(blogPost);
+            var savedBlog = blogPostRepository.save(blogPost);
+
+            if(savedBlog == null){
+                return "Unable to Create Blog Post";
+            }
+                return "Blog Created Successfully";
         }catch (Exception exception){
             throw new PostRequestException("Error occurred, unable to add new blog post");
         }

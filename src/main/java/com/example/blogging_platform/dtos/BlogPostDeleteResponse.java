@@ -16,4 +16,8 @@ import lombok.Setter;
 @Setter
 public class BlogPostDeleteResponse {
     private String deletionMessage;
+     public String defaultDeletionMessage(){
+        deletionMessage = "deletion successful";
+        return deletionMessage;
+    }
 }

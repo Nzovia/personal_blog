@@ -1,14 +1,12 @@
 package com.example.blogging_platform.controllers;
 
 import com.example.blogging_platform.Services.interfaces.BlogPostService;
+import com.example.blogging_platform.dtos.BlogPostDeleteResponse;
 import com.example.blogging_platform.dtos.BlogPostRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author Nicholas Nzovia
@@ -30,6 +28,10 @@ public class BlogPostController {
 
     //Todo. Search blog by title
     //Todo. edit blog post both body and description
-    //Todo. delete blog post
+    @DeleteMapping("delete/{uuid}")
+    private ResponseEntity<String> deleteBlogPostByUuid(@PathVariable String uuid){
+        var deleteResponse = blogPostService.deleteBlogPostByUUid(uuid);
+        return  new ResponseEntity<>(deleteResponse.defaultDeletionMessage(), HttpStatus.OK);
+    }
     //Todo. share api, to generate a link and share.
 }

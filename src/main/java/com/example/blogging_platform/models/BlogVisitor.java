@@ -1,11 +1,10 @@
 package com.example.blogging_platform.models;
 
-import com.example.blogging_platform.Commons.PO;
+import com.example.blogging_platform.commons.PO;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotEmpty;
 import lombok.*;
 
 /**

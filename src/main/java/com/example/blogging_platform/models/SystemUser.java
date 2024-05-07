@@ -1,10 +1,9 @@
 package com.example.blogging_platform.models;
 
-import com.example.blogging_platform.Commons.PO;
+import com.example.blogging_platform.commons.PO;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 import lombok.*;
 

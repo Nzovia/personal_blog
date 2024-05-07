@@ -1,4 +1,4 @@
-package com.example.blogging_platform.Commons;
+package com.example.blogging_platform.commons;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

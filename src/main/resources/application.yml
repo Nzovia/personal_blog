@@ -15,6 +15,13 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: none
-  security:
-    jwt:
-      secret:
+  jwt:
+    header:
+      string: Authorization
+    token:
+      validity: 3600
+      prefix: Bearer
+    signing:
+      key: WIQ9JjgWmv
+    authorities:
+      key: roles

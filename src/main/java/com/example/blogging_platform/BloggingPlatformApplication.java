@@ -14,9 +14,4 @@ public class BloggingPlatformApplication {
     public static void main(String[] args) {
         SpringApplication.run(BloggingPlatformApplication.class, args);
     }
-
-    @Bean
-    public PasswordEncoder passwordEncoder(){
-        return new BCryptPasswordEncoder();
-    }
 }

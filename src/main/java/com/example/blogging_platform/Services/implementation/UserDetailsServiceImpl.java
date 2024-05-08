@@ -3,7 +3,7 @@ package com.example.blogging_platform.Services.implementation;
 import com.example.blogging_platform.models.SystemUser;
 import com.example.blogging_platform.repositories.SystemUserRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.crossstore.ChangeSetPersister;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -20,11 +20,12 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class UserDetailsServiceImpl implements UserDetailsService {
     private final SystemUserRepository systemUserRepository;
     @Override
     public UserDetails loadUserByUsername(String user_email) {
-        SystemUser systemUser = systemUserRepository.findByEmail(user_email)
+        SystemUser systemUser = systemUserRepository.findByUserEmail(user_email)
                 .orElseThrow(() -> new UsernameNotFoundException("Email not found"));
 
         var userDetails = User.builder()

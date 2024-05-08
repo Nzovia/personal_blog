@@ -4,6 +4,8 @@ import com.example.blogging_platform.models.SystemUser;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 /**
  * @author Nicholas Nzovia
  * @On 14/04/2024
@@ -15,4 +17,5 @@ public interface SystemUserRepository extends JpaRepository<SystemUser,Long> {
     boolean existsByUserEmail(String userEmail);
     boolean existsByUuid(String generateUniqueUUIDString);
     SystemUser findByUuid(String uuid);
+    Optional<SystemUser> findByUserEmail(String userEmail);
 }

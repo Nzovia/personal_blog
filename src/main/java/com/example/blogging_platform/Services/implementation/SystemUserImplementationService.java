@@ -2,11 +2,16 @@ package com.example.blogging_platform.Services.implementation;
 
 import com.example.blogging_platform.ExceptionHandling.ResourceTakenException;
 import com.example.blogging_platform.Services.interfaces.SystemUserService;
+import com.example.blogging_platform.dtos.SystemUserLoginRequest;
+import com.example.blogging_platform.dtos.SystemUserLoginResponse;
 import com.example.blogging_platform.dtos.SystemUserRequest;
 import com.example.blogging_platform.models.SystemUser;
 import com.example.blogging_platform.repositories.SystemUserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 
@@ -18,14 +23,16 @@ import static com.example.blogging_platform.Utils.GenerateRandomUUIDUtil.generat
  * @Contact: itsdevelopernic22@gmail.com
  */
 
+@Service
 @RequiredArgsConstructor
 public class SystemUserImplementationService implements SystemUserService {
     private final SystemUserRepository systemUserRepository;
     private  final PasswordEncoder passwordEncoder;
+    AuthenticationManager authenticationManager;
 
     //Creating User Account.
     @Override
-    public SystemUser createUser(SystemUserRequest systemUserRequest) throws ResourceTakenException{
+    public SystemUser systemUserSignUp(SystemUserRequest systemUserRequest) throws ResourceTakenException{
         //throwing exception the email is already taken
         var emailExists = systemUserRepository.existsByUserEmail(systemUserRequest.getUserEmail());
         if(emailExists){
@@ -44,6 +51,16 @@ public class SystemUserImplementationService implements SystemUserService {
         systemUser.setCreatedAt(getCurrentLocalDateTime());
         systemUserRepository.save(systemUser);
         return systemUser;
+    }
+
+    @Override
+    public SystemUserLoginResponse systemUserLogin(SystemUserLoginRequest systemUserLoginRequest) {
+        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
+                systemUserLoginRequest.getEmail(),
+                systemUserLoginRequest.getPassword()
+        ));
+        String jwtToken = "";
+        return new SystemUserLoginResponse(systemUserLoginRequest.getEmail(),jwtToken);
     }
 
     //Getting User Profile details

@@ -9,8 +9,6 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,9 +25,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class SystemUserController {
     private final SystemUserService systemUserService;
-    AuthenticationManager authenticationManager;
     @PostMapping("sign_up")
-    public ResponseEntity<SystemUser> CreateSystemUserAccount(@Valid @RequestBody SystemUserRequest systemUserRequest){
+    public ResponseEntity<String> CreateSystemUserAccount(@RequestBody SystemUserRequest systemUserRequest){
 
         return  new ResponseEntity<>(systemUserService.systemUserSignUp(systemUserRequest), HttpStatus.CREATED);
 

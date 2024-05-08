@@ -37,7 +37,7 @@ public class SystemUser extends PO {
     private String userEmail;
     @Column(name = "user_password")
     @NotBlank(message = "password is required")
-    @Size(min = 8, max = 12)
+    @Size(max = 255)
     private String userPassword;
 
     //manyTomany relationship system users and roles

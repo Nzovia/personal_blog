@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public interface SystemUserService {
-    SystemUser systemUserSignUp(SystemUserRequest systemUserRequest);
+    String systemUserSignUp(SystemUserRequest systemUserRequest);
     SystemUserLoginResponse systemUserLogin(SystemUserLoginRequest systemUserLoginRequest);
     SystemUser getSystemUserProfile(String uuid);
 }

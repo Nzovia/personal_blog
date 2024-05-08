@@ -1,7 +1,7 @@
 package com.example.blogging_platform.Services.implementation;
 
 import com.example.blogging_platform.ExceptionHandling.PostRequestException;
-import com.example.blogging_platform.ExceptionHandling.ResourceNotFoundException;
+import com.example.blogging_platform.ExceptionHandling.NotFoundException;
 import com.example.blogging_platform.Services.interfaces.BlogPostService;
 import com.example.blogging_platform.dtos.BlogPostDeleteResponse;
 import com.example.blogging_platform.dtos.BlogPostRequest;
@@ -50,12 +50,12 @@ public class BlogPostImplementationService implements BlogPostService {
     }
     @Override
     public BlogPost updateBlogPost(BlogPostRequest blogPostRequest, String uuid)
-            throws ResourceNotFoundException {
+            throws NotFoundException {
         //check if the post exists.
         try{
             BlogPost blogPost = blogPostRepository.findByUuid(uuid);
             if(blogPost == null){
-                throw new ResourceNotFoundException("Blog post with uuid "+uuid+" is not found");
+                throw new NotFoundException("Blog post with uuid "+uuid+" is not found");
             }
             else{
                 blogPost.setBlogTitle(blogPostRequest.getBlogTitle());
@@ -69,7 +69,7 @@ public class BlogPostImplementationService implements BlogPostService {
             return  blogPost;
 
         }catch (Exception e){
-            throw new ResourceNotFoundException(e.getMessage());
+            throw new NotFoundException(e.getMessage());
         }
     }
 
@@ -84,18 +84,18 @@ public class BlogPostImplementationService implements BlogPostService {
     }
 
     @Override
-    public BlogPost getBlogPostByUuid(String uuid) throws ResourceNotFoundException{
+    public BlogPost getBlogPostByUuid(String uuid) throws NotFoundException {
         BlogPost foundBlogPost = blogPostRepository.findByUuid(uuid);
         String message = "Unable to retrieve BlogPost";
         try{
             if(foundBlogPost ==null){
-                throw new ResourceNotFoundException(message);
+                throw new NotFoundException(message);
             }else {
                 return foundBlogPost;
             }
 
         }catch (Exception exception){
-            throw new ResourceNotFoundException(message);
+            throw new NotFoundException(message);
         }
     }
 
@@ -111,14 +111,14 @@ public class BlogPostImplementationService implements BlogPostService {
         String message = "Unable to retrieve BlogPost";
         try{
             if(foundBlogPostToDelete ==null){
-                throw new ResourceNotFoundException(message);
+                throw new NotFoundException(message);
             }else {
                 blogPostRepository.deleteByUuid(uuid);
                 return response;
             }
 
         }catch (Exception exception){
-            throw new ResourceNotFoundException(message);
+            throw new NotFoundException(message);
         }
 
     }

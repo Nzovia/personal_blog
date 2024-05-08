@@ -33,25 +33,29 @@ public class SystemUserImplementationService implements SystemUserService {
 
     //Creating User Account.
     @Override
-    public SystemUser systemUserSignUp(SystemUserRequest systemUserRequest) throws ResourceTakenException{
-        //throwing exception the email is already taken
-        var emailExists = systemUserRepository.existsByUserEmail(systemUserRequest.getUserEmail());
-        if(emailExists){
-            throw new ResourceTakenException("Email already exists");
-        }
-        boolean uuidExists = systemUserRepository.existsByUuid(generateUniqueUUIDString());
-        if(!uuidExists){
-            throw new ResourceTakenException("There is a UUID collision Please re-register");
-        }
-        SystemUser systemUser = new SystemUser();
-        systemUser.setUuid(generateUniqueUUIDString());
-        systemUser.setFirstName(systemUserRequest.getFirstName());
-        systemUser.setLastName(systemUserRequest.getLastName());
-        systemUser.setUserEmail(systemUserRequest.getUserEmail());
-        systemUser.setUserPassword(passwordEncoder.encode(systemUserRequest.getUserPassword()));
-        systemUser.setCreatedAt(getCurrentLocalDateTime());
-        systemUserRepository.save(systemUser);
-        return systemUser;
+    public String systemUserSignUp(SystemUserRequest systemUserRequest) throws ResourceTakenException{
+       try{
+           //throwing exception the email is already taken
+           var emailExists = systemUserRepository.existsByUserEmail(systemUserRequest.getUserEmail());
+           if(emailExists){
+               throw new ResourceTakenException("Email already exists");
+           }
+           boolean uuidExists = systemUserRepository.existsByUuid(generateUniqueUUIDString());
+           if(uuidExists){
+               throw new ResourceTakenException("There is a UUID collision Please re-register");
+           }
+           SystemUser systemUser = new SystemUser();
+           systemUser.setUuid(generateUniqueUUIDString());
+           systemUser.setFirstName(systemUserRequest.getFirstName());
+           systemUser.setLastName(systemUserRequest.getLastName());
+           systemUser.setUserEmail(systemUserRequest.getUserEmail());
+           systemUser.setUserPassword(passwordEncoder.encode(systemUserRequest.getUserPassword()));
+           systemUser.setCreatedAt(getCurrentLocalDateTime());
+           systemUserRepository.save(systemUser);
+           return "User account Created";
+       }catch (Exception e){
+           throw new RuntimeException(e.getMessage());
+       }
     }
 
     @Override

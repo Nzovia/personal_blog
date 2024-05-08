@@ -7,21 +7,21 @@ spring:
   application:
     name: blogging_platform
   datasource:
-    url: jdbc:mysql://localhost:3306/blog_posts
+    url: jdbc:mysql://localhost:3306/blog_platform
     username: root
     password: root
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     show-sql: true
     hibernate:
-      ddl-auto: none
-  jwt:
-    header:
-      string: Authorization
-    token:
-      validity: 3600
-      prefix: Bearer
-    signing:
-      key: WIQ9JjgWmv
-    authorities:
-      key: roles
+      ddl-auto: update
+#  jwt:
+#    header:
+#      string: Authorization
+#    token:
+#      validity: 3600
+#      prefix: Bearer
+#    signing:
+#      key: WIQ9JjgWmv
+#    authorities:
+#      key: roles

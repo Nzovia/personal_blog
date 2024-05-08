@@ -40,8 +40,8 @@ public class SecurityConfig {
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests((auth) -> auth
                         //our public endpoints
-                        .requestMatchers(HttpMethod.POST, "/api/auth/signup/**").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/api/auth/login/**").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/v1/users/sign_up/**").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/v1/users/sign_in/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/authentication-docs/**").permitAll()
                         //private endpoints below
                         .anyRequest()

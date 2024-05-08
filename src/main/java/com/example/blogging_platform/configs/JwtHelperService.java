@@ -1,11 +1,11 @@
 package com.example.blogging_platform.configs;
 
+import com.example.blogging_platform.ExceptionHandling.AccessDeniedException;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 
-import java.nio.file.AccessDeniedException;
 import java.security.Key;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
@@ -39,23 +39,23 @@ public class JwtHelperService {
 
 
     //extracting username
-    public static  String extractUserName(String token) throws AccessDeniedException {
+    public static  String extractUserName(String token) {
         return getTokenBody(token).getSubject();
     }
 
     //validating token
-    public static Boolean validateToken(String token, UserDetails userDetails) throws AccessDeniedException {
+    public static Boolean validateToken(String token, UserDetails userDetails){
         final String username = extractUserName(token);
         return username.equals(userDetails.getUsername()) && !isTokenExpired(token);
     }
 
     //Checking token Expiration
-    private static boolean isTokenExpired(String token) throws AccessDeniedException {
+    private static boolean isTokenExpired(String token) {
         Claims claims = getTokenBody(token);
         return claims.getExpiration().before(new Date());
     }
 
-    private static Claims getTokenBody(String token) throws AccessDeniedException {
+    private static Claims getTokenBody(String token) {
         try{
             return Jwts
                     .parser()

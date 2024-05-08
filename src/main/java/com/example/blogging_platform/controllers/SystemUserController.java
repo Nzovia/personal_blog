@@ -36,9 +36,7 @@ public class SystemUserController {
     }
     @PostMapping("sign_in")
     public ResponseEntity<SystemUserLoginResponse> SystemUserLogin(@Valid @RequestBody SystemUserLoginRequest loginRequest){
-        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getPassword()));
-
-        return null;
+        return new ResponseEntity<>(systemUserService.systemUserLogin(loginRequest), HttpStatus.OK);
     }
 
 }

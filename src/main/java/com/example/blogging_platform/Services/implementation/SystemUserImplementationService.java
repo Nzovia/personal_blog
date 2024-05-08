@@ -2,6 +2,7 @@ package com.example.blogging_platform.Services.implementation;
 
 import com.example.blogging_platform.ExceptionHandling.ResourceTakenException;
 import com.example.blogging_platform.Services.interfaces.SystemUserService;
+import com.example.blogging_platform.configs.JwtHelperService;
 import com.example.blogging_platform.dtos.SystemUserLoginRequest;
 import com.example.blogging_platform.dtos.SystemUserLoginResponse;
 import com.example.blogging_platform.dtos.SystemUserRequest;
@@ -59,7 +60,7 @@ public class SystemUserImplementationService implements SystemUserService {
                 systemUserLoginRequest.getEmail(),
                 systemUserLoginRequest.getPassword()
         ));
-        String jwtToken = "";
+        String jwtToken = JwtHelperService.generateToken(systemUserLoginRequest.getEmail());
         return new SystemUserLoginResponse(systemUserLoginRequest.getEmail(),jwtToken);
     }
 

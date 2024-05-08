@@ -1,7 +1,9 @@
 package com.example.blogging_platform.dtos;
 
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 /**
  * @author Nicholas Nzovia
@@ -11,6 +13,8 @@ import lombok.NoArgsConstructor;
 
 @AllArgsConstructor
 @NoArgsConstructor
+@Getter
+@Setter
 public class SystemUserLoginResponse {
     private String email;
     private String jwtToken;

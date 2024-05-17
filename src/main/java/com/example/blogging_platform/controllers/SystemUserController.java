@@ -1,6 +1,7 @@
 package com.example.blogging_platform.controllers;
 
 import com.example.blogging_platform.Services.interfaces.SystemUserService;
+import com.example.blogging_platform.dtos.SuccessResponse;
 import com.example.blogging_platform.dtos.SystemUserLoginRequest;
 import com.example.blogging_platform.dtos.SystemUserLoginResponse;
 import com.example.blogging_platform.dtos.SystemUserRequest;
@@ -26,7 +27,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class SystemUserController {
     private final SystemUserService systemUserService;
     @PostMapping("sign_up")
-    public ResponseEntity<String> CreateSystemUserAccount(@RequestBody SystemUserRequest systemUserRequest){
+    public ResponseEntity<SuccessResponse> CreateSystemUserAccount(@RequestBody SystemUserRequest systemUserRequest){
 
         return  new ResponseEntity<>(systemUserService.systemUserSignUp(systemUserRequest), HttpStatus.CREATED);
 

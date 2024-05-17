@@ -3,12 +3,14 @@ package com.example.blogging_platform.Services.implementation;
 import com.example.blogging_platform.ExceptionHandling.ResourceTakenException;
 import com.example.blogging_platform.Services.interfaces.SystemUserService;
 import com.example.blogging_platform.configs.JwtHelperService;
+import com.example.blogging_platform.dtos.SuccessResponse;
 import com.example.blogging_platform.dtos.SystemUserLoginRequest;
 import com.example.blogging_platform.dtos.SystemUserLoginResponse;
 import com.example.blogging_platform.dtos.SystemUserRequest;
 import com.example.blogging_platform.models.SystemUser;
 import com.example.blogging_platform.repositories.SystemUserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -33,7 +35,7 @@ public class SystemUserImplementationService implements SystemUserService {
 
     //Creating User Account.
     @Override
-    public String systemUserSignUp(SystemUserRequest systemUserRequest) throws ResourceTakenException{
+    public SuccessResponse systemUserSignUp(SystemUserRequest systemUserRequest) throws ResourceTakenException{
        try{
            //throwing exception the email is already taken
            var emailExists = systemUserRepository.existsByUserEmail(systemUserRequest.getUserEmail());
@@ -52,7 +54,7 @@ public class SystemUserImplementationService implements SystemUserService {
            systemUser.setUserPassword(passwordEncoder.encode(systemUserRequest.getUserPassword()));
            systemUser.setCreatedAt(getCurrentLocalDateTime());
            systemUserRepository.save(systemUser);
-           return "User account Created";
+           return new SuccessResponse(200,"User account Created");
        }catch (Exception e){
            throw new RuntimeException(e.getMessage());
        }

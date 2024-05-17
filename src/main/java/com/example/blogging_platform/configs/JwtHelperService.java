@@ -33,7 +33,7 @@ public class JwtHelperService {
                 .subject(email)
                 .issuedAt(Date.from(now))
                 .expiration(Date.from(now.plus(MINUTES, ChronoUnit.MINUTES)))
-                .signWith(SignatureAlgorithm.ES256,SECRET_KEY)
+                .signWith(SignatureAlgorithm.HS512,SECRET_KEY)
                 .compact();
     }
 

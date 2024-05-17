@@ -29,7 +29,7 @@ import static com.example.blogging_platform.Utils.GenerateRandomUUIDUtil.generat
 public class SystemUserImplementationService implements SystemUserService {
     private final SystemUserRepository systemUserRepository;
     private  final PasswordEncoder passwordEncoder;
-    AuthenticationManager authenticationManager;
+    private final AuthenticationManager authenticationManager;
 
     //Creating User Account.
     @Override

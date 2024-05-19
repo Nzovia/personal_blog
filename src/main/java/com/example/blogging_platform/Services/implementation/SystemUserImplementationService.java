@@ -60,6 +60,7 @@ public class SystemUserImplementationService implements SystemUserService {
        }
     }
 
+    //Login service
     @Override
     public SystemUserLoginResponse systemUserLogin(SystemUserLoginRequest systemUserLoginRequest) {
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
@@ -67,14 +68,14 @@ public class SystemUserImplementationService implements SystemUserService {
                 systemUserLoginRequest.getPassword()
         ));
         String jwtToken = JwtHelperService.generateToken(systemUserLoginRequest.getEmail());
-        return new SystemUserLoginResponse(systemUserLoginRequest.getEmail(),jwtToken);
+        String message = "Authentication Successful";
+        return new SystemUserLoginResponse(systemUserLoginRequest.getEmail(),message,jwtToken);
     }
 
     //Getting User Profile details
     @Override
     public SystemUser getSystemUserProfile(String uuid) {
-        SystemUser systemUser = systemUserRepository.findByUuid(uuid);
-        return null;
+        return systemUserRepository.findByUuid(uuid);
     }
 
     private LocalDateTime getCurrentLocalDateTime() {

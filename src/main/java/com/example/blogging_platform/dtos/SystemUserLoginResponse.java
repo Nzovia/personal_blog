@@ -17,6 +17,7 @@ import lombok.Setter;
 @Setter
 public class SystemUserLoginResponse {
     private String email;
+    private String message;
     private String jwtToken;
 
 

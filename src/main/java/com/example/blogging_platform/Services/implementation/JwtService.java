@@ -22,7 +22,7 @@ import java.util.function.Function;
 
 @Component
 public class JwtService {
-    public static final String SECRET = "357638792F423F4428472B4B6250655368566D597133743677397A2443264629";
+    public static final String SECRET = "9a39863c912d9d310f5c4fd043ac9d4c1a4114fc39033ecb41b5d249092f6b1f";
 
     public String extractUsername(String token){
         return extractClaim(token, Claims::getSubject);
@@ -55,12 +55,12 @@ public class JwtService {
     }
 
     //Generating Token
-    public String generateToken(String username){
+    public static String generateToken(String username){
         Map<String,Object> claims = new HashMap<>();
         return  createToken(claims,username);
     }
 
-    private String createToken(Map<String, Object> claims, String username) {
+    private static String createToken(Map<String, Object> claims, String username) {
         return  Jwts.builder()
                 .claims(claims)
                 .subject(username)
@@ -70,7 +70,7 @@ public class JwtService {
                 .compact();
     }
 
-    private Key getSignKey() {
+    private static Key getSignKey() {
         byte[] keyBytes = Decoders.BASE64.decode(SECRET);
         return Keys.hmacShaKeyFor(keyBytes);
     }

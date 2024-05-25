@@ -1,18 +1,17 @@
 package com.example.blogging_platform.Services.implementation;
 
+import com.example.blogging_platform.ExceptionHandling.NotFoundException;
 import com.example.blogging_platform.ExceptionHandling.ResourceTakenException;
 import com.example.blogging_platform.Services.interfaces.SystemUserService;
-import com.example.blogging_platform.configs.JwtHelperService;
 import com.example.blogging_platform.dtos.SuccessResponse;
 import com.example.blogging_platform.dtos.SystemUserLoginRequest;
 import com.example.blogging_platform.dtos.SystemUserLoginResponse;
 import com.example.blogging_platform.dtos.SystemUserRequest;
 import com.example.blogging_platform.models.SystemUser;
 import com.example.blogging_platform.repositories.SystemUserRepository;
-import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -27,11 +26,18 @@ import static com.example.blogging_platform.Utils.GenerateRandomUUIDUtil.generat
  */
 
 @Service
-@RequiredArgsConstructor
 public class SystemUserImplementationService implements SystemUserService {
     private final SystemUserRepository systemUserRepository;
     private  final PasswordEncoder passwordEncoder;
     private final AuthenticationManager authenticationManager;
+
+    public SystemUserImplementationService(SystemUserRepository systemUserRepository,
+                                           PasswordEncoder passwordEncoder,
+                                           AuthenticationManager authenticationManager) {
+        this.systemUserRepository = systemUserRepository;
+        this.passwordEncoder = passwordEncoder;
+        this.authenticationManager = authenticationManager;
+    }
 
     //Creating User Account.
     @Override
@@ -63,13 +69,18 @@ public class SystemUserImplementationService implements SystemUserService {
     //Login service
     @Override
     public SystemUserLoginResponse systemUserLogin(SystemUserLoginRequest systemUserLoginRequest) {
-        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
-                systemUserLoginRequest.getEmail(),
-                systemUserLoginRequest.getPassword()
-        ));
-        String jwtToken = JwtHelperService.generateToken(systemUserLoginRequest.getEmail());
-        String message = "Authentication Successful";
-        return new SystemUserLoginResponse(systemUserLoginRequest.getEmail(),message,jwtToken);
+        Authentication authentication = authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(systemUserLoginRequest.getEmail(),
+                        systemUserLoginRequest.getPassword())
+        );
+        if(authentication.isAuthenticated()){
+            String jwtToken = JwtService.generateToken(systemUserLoginRequest.getEmail());
+            String message = "Authentication Successful";
+            return new SystemUserLoginResponse(systemUserLoginRequest.getEmail(),message,jwtToken);
+        }else{
+            throw new NotFoundException("user details not valid");
+        }
+
     }
 
     //Getting User Profile details

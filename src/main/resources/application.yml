@@ -15,13 +15,13 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: update
-#  jwt:
-#    header:
-#      string: Authorization
-#    token:
-#      validity: 3600
-#      prefix: Bearer
-#    signing:
-#      key: WIQ9JjgWmv
-#    authorities:
-#      key: roles
+  jwt:
+    header:
+      string: Authorization
+    token:
+      validity: 3600
+      prefix: Bearer
+    signing:
+      key: 9a39863c912d9d310f5c4fd043ac9d4c1a4114fc39033ecb41b5d249092f6b1f
+    authorities:
+      key: roles

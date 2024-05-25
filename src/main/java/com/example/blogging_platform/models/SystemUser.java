@@ -41,7 +41,7 @@ public class SystemUser extends PO {
     private String userPassword;
 
     //manyTomany relationship system users and roles
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "user_roles",
             joinColumns = @JoinColumn(name = "user_id"),

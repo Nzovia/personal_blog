@@ -7,7 +7,6 @@ import com.example.blogging_platform.dtos.SystemUserLoginResponse;
 import com.example.blogging_platform.dtos.SystemUserRequest;
 import com.example.blogging_platform.models.SystemUser;
 import jakarta.validation.Valid;
-import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,9 +19,13 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("api/v1/users/")
-@RequiredArgsConstructor
 public class SystemUserController {
-    private final SystemUserService systemUserService;
+    private  SystemUserService systemUserService;
+
+    public SystemUserController(SystemUserService systemUserService) {
+        this.systemUserService = systemUserService;
+    }
+
     @PostMapping("sign_up")
     public ResponseEntity<SuccessResponse> CreateSystemUserAccount(@RequestBody SystemUserRequest systemUserRequest){
 

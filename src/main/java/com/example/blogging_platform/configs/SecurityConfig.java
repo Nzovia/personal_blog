@@ -42,9 +42,9 @@ public class SecurityConfig {
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests((auth) -> auth
                         //our public endpoints
-                        .requestMatchers(HttpMethod.POST, "/api/v1/users/sign_up/**").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/api/v1/users/sign_in/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/authentication-docs/**").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/v1/users/sign_up").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/v1/users/sign_in").permitAll()
                         //private endpoints below
                         .anyRequest()
                         .authenticated()

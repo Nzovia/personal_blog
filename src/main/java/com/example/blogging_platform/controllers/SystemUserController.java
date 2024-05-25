@@ -29,7 +29,7 @@ public class SystemUserController {
     @PostMapping("sign_up")
     public ResponseEntity<SuccessResponse> CreateSystemUserAccount(@RequestBody SystemUserRequest systemUserRequest){
 
-        return  new ResponseEntity<>(systemUserService.systemUserSignUp(systemUserRequest), HttpStatus.CREATED);
+        return  new ResponseEntity<>(systemUserService.systemUserSignUp(systemUserRequest), HttpStatus.OK);
 
     }
     @PostMapping("sign_in")

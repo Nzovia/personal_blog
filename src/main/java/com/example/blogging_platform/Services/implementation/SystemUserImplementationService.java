@@ -3,10 +3,8 @@ package com.example.blogging_platform.Services.implementation;
 import com.example.blogging_platform.ExceptionHandling.NotFoundException;
 import com.example.blogging_platform.ExceptionHandling.ResourceTakenException;
 import com.example.blogging_platform.Services.interfaces.SystemUserService;
-import com.example.blogging_platform.dtos.SuccessResponse;
-import com.example.blogging_platform.dtos.SystemUserLoginRequest;
-import com.example.blogging_platform.dtos.SystemUserLoginResponse;
-import com.example.blogging_platform.dtos.SystemUserRequest;
+import com.example.blogging_platform.dtos.*;
+import com.example.blogging_platform.models.Role;
 import com.example.blogging_platform.models.SystemUser;
 import com.example.blogging_platform.repositories.SystemUserRepository;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -16,6 +14,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Collection;
 
 import static com.example.blogging_platform.Utils.GenerateRandomUUIDUtil.generateUniqueUUIDString;
 

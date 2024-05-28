@@ -23,4 +23,20 @@ public class GlobalExceptionHandler {
     public ResponseEntity<StringResponse>  handleResourceTakenException(ResourceTakenException ex){
         return ResponseEntity.status(HttpStatus.CONFLICT).body(new StringResponse(ex.getMessage()));
     }
+
+    @ExceptionHandler(PostRequestException.class)
+    public ResponseEntity<StringResponse> handlePostRequestException(PostRequestException ex){
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new StringResponse(ex.getMessage()));
+    }
+
+    @ExceptionHandler(UnAuthorizedRequestException.class)
+    public ResponseEntity<StringResponse> handleUnAuthorizedRequestException(UnAuthorizedRequestException ex){
+        return ResponseEntity.status(HttpStatus.FORBIDDEN).body(new StringResponse(ex.getMessage())); //403
+    }
+    @ExceptionHandler(AccessDeniedException.class)
+    public ResponseEntity<StringResponse> handleAccessDeniedException(AccessDeniedException ex){
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new StringResponse(ex.getMessage())); //401
+
+    }
+
 }

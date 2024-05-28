@@ -1,5 +1,6 @@
 package com.example.blogging_platform.configs;
 
+import com.example.blogging_platform.ExceptionHandling.AccessDeniedException;
 import com.example.blogging_platform.Services.implementation.UserDetailsServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;

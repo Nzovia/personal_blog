@@ -1,5 +1,6 @@
 package com.example.blogging_platform.Services.interfaces;
 
+import com.example.blogging_platform.commons.StringResponse;
 import com.example.blogging_platform.dtos.SuccessResponse;
 import com.example.blogging_platform.dtos.SystemUserLoginRequest;
 import com.example.blogging_platform.dtos.SystemUserLoginResponse;
@@ -18,4 +19,5 @@ public interface SystemUserService {
     SuccessResponse systemUserSignUp(SystemUserRequest systemUserRequest);
     SystemUserLoginResponse systemUserLogin(SystemUserLoginRequest systemUserLoginRequest);
     SystemUser getSystemUserProfile(String uuid);
+    StringResponse assignRolesToAUser(String userId, String roleId);
 }

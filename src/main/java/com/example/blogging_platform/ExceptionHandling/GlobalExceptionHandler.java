@@ -28,14 +28,5 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ExceptionResponseBody(ex.getMessage(), ex.getCause()));
     }
 
-    @ExceptionHandler(UnAuthorizedRequestException.class)
-    public ResponseEntity<ExceptionResponseBody> handleUnAuthorizedRequestException(UnAuthorizedRequestException ex){
-        return ResponseEntity.status(HttpStatus.FORBIDDEN).body(new ExceptionResponseBody(ex.getMessage(), ex.getCause())); //403
-    }
-    @ExceptionHandler(AccessDeniedException.class)
-    public ResponseEntity<ExceptionResponseBody> handleAccessDeniedException(AccessDeniedException ex){
-        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new ExceptionResponseBody(ex.getMessage(), ex.getCause())); //401
-
-    }
 
 }

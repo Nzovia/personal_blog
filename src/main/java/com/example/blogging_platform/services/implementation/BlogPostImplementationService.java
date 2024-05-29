@@ -1,8 +1,8 @@
-package com.example.blogging_platform.Services.implementation;
+package com.example.blogging_platform.services.implementation;
 
 import com.example.blogging_platform.ExceptionHandling.PostRequestException;
 import com.example.blogging_platform.ExceptionHandling.NotFoundException;
-import com.example.blogging_platform.Services.interfaces.BlogPostService;
+import com.example.blogging_platform.services.interfaces.BlogPostService;
 import com.example.blogging_platform.dtos.BlogPostDeleteResponse;
 import com.example.blogging_platform.dtos.BlogPostRequest;
 import com.example.blogging_platform.models.BlogPost;
@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-import static com.example.blogging_platform.Utils.GenerateRandomUUIDUtil.generateUniqueUUIDString;
+import static com.example.blogging_platform.utils.GenerateRandomUUIDUtil.generateUniqueUUIDString;
 
 /**
  * @author Nicholas Nzovia

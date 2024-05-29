@@ -1,6 +1,6 @@
 package com.example.blogging_platform.controllers;
 
-import com.example.blogging_platform.Services.interfaces.SystemUserService;
+import com.example.blogging_platform.services.interfaces.SystemUserService;
 import com.example.blogging_platform.commons.StringResponse;
 import com.example.blogging_platform.dtos.SuccessResponse;
 import com.example.blogging_platform.dtos.SystemUserLoginRequest;

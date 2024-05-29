@@ -1,9 +1,6 @@
-package com.example.blogging_platform.configs;
+package com.example.blogging_platform.jwt_security;
 
-import com.example.blogging_platform.ExceptionHandling.AccessDeniedException;
-import com.example.blogging_platform.ExceptionHandling.UnAuthorizedRequestException;
-import com.example.blogging_platform.Services.implementation.JwtService;
-import com.example.blogging_platform.Services.implementation.UserDetailsServiceImpl;
+import com.example.blogging_platform.services.implementation.UserDetailsServiceImpl;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

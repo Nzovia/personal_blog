@@ -1,8 +1,9 @@
-package com.example.blogging_platform.Services.implementation;
+package com.example.blogging_platform.services.implementation;
 
 import com.example.blogging_platform.ExceptionHandling.NotFoundException;
 import com.example.blogging_platform.ExceptionHandling.ResourceTakenException;
-import com.example.blogging_platform.Services.interfaces.SystemUserService;
+import com.example.blogging_platform.jwt_security.JwtService;
+import com.example.blogging_platform.services.interfaces.SystemUserService;
 
 import com.example.blogging_platform.commons.StringResponse;
 import com.example.blogging_platform.dtos.SuccessResponse;
@@ -24,7 +25,7 @@ import java.time.LocalDateTime;
 
 import java.util.Optional;
 
-import static com.example.blogging_platform.Utils.GenerateRandomUUIDUtil.generateUniqueUUIDString;
+import static com.example.blogging_platform.utils.GenerateRandomUUIDUtil.generateUniqueUUIDString;
 
 /**
  * @author Nicholas Nzovia

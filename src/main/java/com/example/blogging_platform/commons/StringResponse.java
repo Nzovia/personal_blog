@@ -17,4 +17,5 @@ import lombok.Setter;
 @NoArgsConstructor
 public class StringResponse {
     private String message;
+
 }

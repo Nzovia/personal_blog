@@ -1,11 +1,11 @@
-package com.example.blogging_platform.Services.implementation;
+package com.example.blogging_platform.services.implementation;
 
 import com.example.blogging_platform.dtos.RoleDto;
 import com.example.blogging_platform.models.Role;
 import com.example.blogging_platform.repositories.RolesRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import static com.example.blogging_platform.Utils.GenerateRandomUUIDUtil.generateUniqueUUIDString;
+import static com.example.blogging_platform.utils.GenerateRandomUUIDUtil.generateUniqueUUIDString;
 
 /**
  * @author Nicholas Nzovia

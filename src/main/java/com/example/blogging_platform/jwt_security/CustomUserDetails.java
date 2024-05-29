@@ -1,4 +1,4 @@
-package com.example.blogging_platform.Utils;
+package com.example.blogging_platform.jwt_security;
 
 import com.example.blogging_platform.models.Role;
 import com.example.blogging_platform.models.SystemUser;

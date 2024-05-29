@@ -1,6 +1,6 @@
 package com.example.blogging_platform.controllers;
 
-import com.example.blogging_platform.Services.interfaces.BlogPostService;
+import com.example.blogging_platform.services.interfaces.BlogPostService;
 import com.example.blogging_platform.dtos.BlogPostRequest;
 import com.example.blogging_platform.models.BlogPost;
 import lombok.RequiredArgsConstructor;

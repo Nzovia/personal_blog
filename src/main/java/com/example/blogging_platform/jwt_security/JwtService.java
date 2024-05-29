@@ -1,4 +1,4 @@
-package com.example.blogging_platform.Services.implementation;
+package com.example.blogging_platform.jwt_security;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

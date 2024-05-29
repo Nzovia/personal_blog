@@ -1,4 +1,4 @@
-package com.example.blogging_platform.Services.interfaces;
+package com.example.blogging_platform.services.interfaces;
 
 import com.example.blogging_platform.dtos.BlogPostDeleteResponse;
 import com.example.blogging_platform.dtos.BlogPostRequest;

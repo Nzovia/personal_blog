@@ -2,12 +2,12 @@ package com.example.blogging_platform.ExceptionHandling;
 
 /**
  * @author Nicholas Nzovia
- * @On 15/04/2024
+ * @On 28/05/2024
  * @Contact: itsdevelopernic22@gmail.com
  */
 
-public class ResourceTakenException extends RuntimeException{
-    public ResourceTakenException(String message) {
+public class UnAuthorizedRequestException extends RuntimeException{
+    public UnAuthorizedRequestException(String message){
         super(message);
     }
 }

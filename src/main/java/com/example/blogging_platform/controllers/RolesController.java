@@ -1,6 +1,6 @@
 package com.example.blogging_platform.controllers;
 
-import com.example.blogging_platform.Services.implementation.RoleService;
+import com.example.blogging_platform.services.implementation.RoleService;
 import com.example.blogging_platform.dtos.RoleDto;
 import com.example.blogging_platform.models.Role;
 import lombok.RequiredArgsConstructor;

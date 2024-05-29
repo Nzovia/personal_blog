@@ -25,7 +25,7 @@ public class CustomAuthenticationEntryPoint implements AuthenticationEntryPoint 
     public void commence(HttpServletRequest request, HttpServletResponse response,
                          AuthenticationException authException) throws IOException, ServletException {
         ExceptionResponseBody restError =
-                new ExceptionResponseBody("Authentication request failed", authException.getCause());
+                new ExceptionResponseBody("Authentication request failed, wrong password or email", authException.getCause());
         response.setContentType(MediaType.APPLICATION_JSON_VALUE);
         response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
         OutputStream outputStream = response.getOutputStream();

@@ -10,6 +10,7 @@ import com.example.blogging_platform.models.SystemUser;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -26,7 +27,7 @@ public class SystemUserController {
     public SystemUserController(SystemUserService systemUserService) {
         this.systemUserService = systemUserService;
     }
-
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("sign_up")
     public ResponseEntity<SuccessResponse> CreateSystemUserAccount(@RequestBody SystemUserRequest systemUserRequest){
         return  new ResponseEntity<>(systemUserService.systemUserSignUp(systemUserRequest), HttpStatus.OK);
@@ -39,6 +40,7 @@ public class SystemUserController {
     public ResponseEntity<SystemUser> getUserProfile(@PathVariable String uuid){
         return new ResponseEntity<>(systemUserService.getSystemUserProfile(uuid), HttpStatus.OK);
     }
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/assign_role")
     public ResponseEntity<StringResponse> assignROlesToTheUser(@RequestParam(name = "userId") String userId,
                                                                @RequestParam(name = "roleId") String roleId){

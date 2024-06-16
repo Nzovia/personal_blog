@@ -1,4 +1,4 @@
-package com.example.blogging_platform;
+package com.example.blogging_platform.services;
 
 /**
  * @author Nicholas Nzovia

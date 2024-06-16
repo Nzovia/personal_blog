@@ -10,6 +10,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -42,6 +43,24 @@ public class SystemUser extends PO {
     @NotBlank(message = "password is required")
     @Size(max = 255)
     private String userPassword;
+
+    public SystemUser(Long id, String uuid,
+                      String createdBy, LocalDateTime createdAt,
+                      String updatedBy, LocalDateTime updatedAt,
+                      String deletedBy, LocalDateTime deletedAt,
+                      String firstName, String lastName,
+                      String userName, String userEmail,
+                      String userPassword, Set<Role> roles) {
+        super(id, uuid, createdBy, createdAt, updatedBy,
+                updatedAt, deletedBy, deletedAt);
+        this.setUuid(uuid);
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.userName = userName;
+        this.userEmail = userEmail;
+        this.userPassword = userPassword;
+        this.roles = roles;
+    }
 
     //ManyToMany relationship system users and roles
     @ManyToMany(fetch = FetchType.EAGER)

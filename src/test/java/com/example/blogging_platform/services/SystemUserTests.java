@@ -1,5 +1,6 @@
-package com.example.blogging_platform;
+package com.example.blogging_platform.services;
 
+import com.example.blogging_platform.models.SystemUser;
 import org.junit.Test;
 import org.springframework.boot.test.context.TestComponent;
 

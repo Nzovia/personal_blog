@@ -5,6 +5,8 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
+import java.time.LocalDateTime;
+
 /**
  * @author Nicholas Nzovia
  * @On 06/04/2024
@@ -15,9 +17,7 @@ import lombok.*;
 @Table(name = "tb_blog_posts")
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
-@Builder
 public class BlogPost extends PO {
     @Column(name = "blog_title")
     @NotBlank(message = "title required")
@@ -37,4 +37,14 @@ public class BlogPost extends PO {
     )
     private SystemUser systemUser;
 
+    public BlogPost(Long id, String uuid, String createdBy, LocalDateTime createdAt,
+                    String updatedBy, LocalDateTime updatedAt, String deletedBy,
+                    LocalDateTime deletedAt, String blogTitle, String blogSubTitles,
+                    String blogDescription, SystemUser systemUser) {
+        super(id, uuid, createdBy, createdAt, updatedBy, updatedAt, deletedBy, deletedAt);
+        this.blogTitle = blogTitle;
+        this.blogSubTitles = blogSubTitles;
+        this.blogDescription = blogDescription;
+        this.systemUser = systemUser;
+    }
 }

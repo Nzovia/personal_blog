@@ -38,10 +38,9 @@ public class BlogPost extends PO {
     private SystemUser systemUser;
 
     public BlogPost(Long id, String uuid, String createdBy, LocalDateTime createdAt,
-                    String updatedBy, LocalDateTime updatedAt, String deletedBy,
-                    LocalDateTime deletedAt, String blogTitle, String blogSubTitles,
+                    String updatedBy, LocalDateTime updatedAt, String blogTitle, String blogSubTitles,
                     String blogDescription, SystemUser systemUser) {
-        super(id, uuid, createdBy, createdAt, updatedBy, updatedAt, deletedBy, deletedAt);
+        super(id, uuid, createdBy, createdAt, updatedBy, updatedAt);
         this.blogTitle = blogTitle;
         this.blogSubTitles = blogSubTitles;
         this.blogDescription = blogDescription;

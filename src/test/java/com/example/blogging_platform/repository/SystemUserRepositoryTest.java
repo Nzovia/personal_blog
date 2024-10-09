@@ -43,7 +43,7 @@ public class SystemUserRepositoryTest {
         roleSet.add(role);
 
         systemUser = new SystemUser(1l,"Wsl12234","", LocalDateTime.now(),
-                "",LocalDateTime.now(),"" ,LocalDateTime.now(),
+                "",LocalDateTime.now(),
                 "Nicholas","Maundu","NM",
                 "nichonzovia@gmail.com","12345",roleSet);
         systemUserRepository.save(systemUser);

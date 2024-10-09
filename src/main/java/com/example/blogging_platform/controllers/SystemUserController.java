@@ -27,7 +27,7 @@ public class SystemUserController {
     public SystemUserController(SystemUserService systemUserService) {
         this.systemUserService = systemUserService;
     }
-    @PreAuthorize("hasRole('ADMIN')")
+    //@PreAuthorize("hasRole('ADMIN')")
     @PostMapping("sign_up")
     public ResponseEntity<SuccessResponse> CreateSystemUserAccount(@RequestBody SystemUserRequest systemUserRequest){
         return  new ResponseEntity<>(systemUserService.systemUserSignUp(systemUserRequest), HttpStatus.OK);

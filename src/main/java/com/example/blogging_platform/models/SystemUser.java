@@ -47,12 +47,11 @@ public class SystemUser extends PO {
     public SystemUser(Long id, String uuid,
                       String createdBy, LocalDateTime createdAt,
                       String updatedBy, LocalDateTime updatedAt,
-                      String deletedBy, LocalDateTime deletedAt,
                       String firstName, String lastName,
                       String userName, String userEmail,
                       String userPassword, Set<Role> roles) {
         super(id, uuid, createdBy, createdAt, updatedBy,
-                updatedAt, deletedBy, deletedAt);
+                updatedAt);
         this.setUuid(uuid);
         this.firstName = firstName;
         this.lastName = lastName;

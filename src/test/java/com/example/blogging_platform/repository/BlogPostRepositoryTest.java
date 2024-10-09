@@ -36,7 +36,7 @@ public class BlogPostRepositoryTest {
 
         blogPost = new BlogPost(
                 1l,"blog1234","", LocalDateTime.now(),
-                "",LocalDateTime.now(),"" ,LocalDateTime.now(),
+                "",LocalDateTime.now(),
                 "Java Blog", "Learning Java", "Here Testing Java", systemUser
         );
 

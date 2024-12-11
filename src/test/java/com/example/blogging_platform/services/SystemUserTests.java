@@ -13,12 +13,12 @@ import org.springframework.boot.test.context.TestComponent;
 
 public class SystemUserTests {
     @Test
-    void shouldCreateSystemUser(){
+   public  void shouldCreateSystemUser(){
 
     }
 
     @Test
-    void shouldGetSystemUserDetails(){
+    public void shouldGetSystemUserDetails(){
 
     }
 }

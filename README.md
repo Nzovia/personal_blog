@@ -5,4 +5,4 @@ The following is ERD for the blogging platform.
 
 Blog platform CI/CD architecture
 
-<img width="504" alt="BP Pipeline" src="https://github.com/user-attachments/assets/afcebb1e-72b7-43b7-9f3e-199b1968058d" />
+<img width="914" alt="BP Pipeline" src="https://github.com/user-attachments/assets/afcebb1e-72b7-43b7-9f3e-199b1968058d" />

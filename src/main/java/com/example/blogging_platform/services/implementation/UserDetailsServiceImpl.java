@@ -24,14 +24,13 @@ import org.springframework.stereotype.Service;
 public class UserDetailsServiceImpl implements UserDetailsService {
     private final SystemUserRepository systemUserRepository;
     @Override
-    public UserDetails loadUserByUsername(String user_email) {
-        SystemUser systemUser = systemUserRepository.findByUserEmail(user_email)
+    public UserDetails loadUserByUsername(String userEmail) {
+        SystemUser systemUser = systemUserRepository.findByUserEmail(userEmail)
                 .orElseThrow(() -> new NotFoundException("Email not found"));
 
-        var userDetails = User.builder()
+        return User.builder()
                 .username(systemUser.getUserEmail())
                 .password(systemUser.getUserPassword())
                 .build();
-        return userDetails;
     }
 }

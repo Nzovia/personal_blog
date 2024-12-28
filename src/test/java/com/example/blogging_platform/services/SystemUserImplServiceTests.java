@@ -1,8 +1,6 @@
 package com.example.blogging_platform.services;
 
-import com.example.blogging_platform.models.SystemUser;
 import org.junit.Test;
-import org.springframework.boot.test.context.TestComponent;
 
 /**
  * @author Nicholas Nzovia
@@ -11,7 +9,7 @@ import org.springframework.boot.test.context.TestComponent;
  */
 
 
-public class SystemUserTests {
+public class SystemUserImplServiceTests {
     @Test
    public  void shouldCreateSystemUser(){
 

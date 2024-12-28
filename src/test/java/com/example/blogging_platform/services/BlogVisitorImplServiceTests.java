@@ -6,5 +6,5 @@ package com.example.blogging_platform.services;
  * @Contact: itsdevelopernic22@gmail.com
  */
 
-public class BlogPostTests {
+public class BlogVisitorImplServiceTests {
 }

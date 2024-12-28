@@ -1,4 +1,4 @@
-package com.example.blogging_platform.repository;
+package com.example.blogging_platform.repositoryTests;
 
 import com.example.blogging_platform.models.Role;
 import com.example.blogging_platform.models.SystemUser;
@@ -24,7 +24,8 @@ import static org.assertj.core.api.Assertions.assertThat;
  */
 
 @DataJpaTest
-public class SystemUserRepositoryTest {
+
+class SystemUserRepositoryTest {
     @Autowired
     private SystemUserRepository systemUserRepository;
     @Autowired
@@ -36,13 +37,13 @@ public class SystemUserRepositoryTest {
     @BeforeEach
     void setUp() {
 
-        role = new Role(1l,"role101","ADMIN");
+        role = new Role(1L,"role101","ADMIN");
         rolesRepository.save(role);
 
         Set<Role> roleSet = new HashSet<>();
         roleSet.add(role);
 
-        systemUser = new SystemUser(1l,"Wsl12234","", LocalDateTime.now(),
+        systemUser = new SystemUser(1L,"Wsl12234","", LocalDateTime.now(),
                 "",LocalDateTime.now(),
                 "Nicholas","Maundu","NM",
                 "nichonzovia@gmail.com","12345",roleSet);
@@ -58,12 +59,12 @@ public class SystemUserRepositoryTest {
         systemUserRepository.deleteAll();
     }
 
-    //Test Cases, find User by email {SUCCESS, FAILURE}
+
     //...success
     @Test
     void testFindSystemUserByEmail(){
         Optional<SystemUser> systemUser1 = systemUserRepository.findByUserEmail("nichonzovia@gmail.com");
-        assertThat(systemUser1.isPresent()).isTrue();
+        assertThat(systemUser1).isPresent();
         assertThat(systemUser1.get().getFirstName()).isEqualTo(systemUser.getFirstName());
     }
 
@@ -71,6 +72,6 @@ public class SystemUserRepositoryTest {
     @Test
     void testFindSystemUserByEmailNotFound(){
         Optional<SystemUser> systemUser1 = systemUserRepository.findByUserEmail("nichonzovia1@gmail.com");
-        assertThat(systemUser1.isPresent()).isFalse();
+        assertThat(systemUser1).isEmpty();
     }
 }

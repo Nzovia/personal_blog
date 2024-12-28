@@ -1,4 +1,4 @@
-package com.example.blogging_platform.services;
+package com.example.blogging_platform.serviceLayerTests;
 
 import org.junit.Test;
 

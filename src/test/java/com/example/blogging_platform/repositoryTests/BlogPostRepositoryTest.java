@@ -1,14 +1,14 @@
-package com.example.blogging_platform.repository;
+package com.example.blogging_platform.repositoryTests;
 
 import com.example.blogging_platform.models.BlogPost;
 import com.example.blogging_platform.models.SystemUser;
 import com.example.blogging_platform.repositories.BlogPostRepository;
 import com.example.blogging_platform.repositories.SystemUserRepository;
+import org.junit.Test;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.testng.annotations.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
 
@@ -21,7 +21,8 @@ import java.time.LocalDateTime;
  */
 
 @DataJpaTest
-public class BlogPostRepositoryTest {
+
+ public class BlogPostRepositoryTest {
     @Autowired
     private BlogPostRepository blogPostRepository;
     @Autowired
@@ -45,7 +46,7 @@ public class BlogPostRepositoryTest {
 
     //Creating blog post test
     @Test
-    void testCreateABlogPost(){
+   public void testCreateABlogPost(){
         blogPost = blogPostRepository.findByUuid("blog1234");
         assertThat(blogPost.getBlogTitle()).isEqualTo("Java Blog");
     }

@@ -1,4 +1,4 @@
-package com.example.blogging_platform.repository;
+package com.example.blogging_platform.repositoryTests;
 
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 

@@ -1,4 +1,4 @@
-package com.example.blogging_platform.services;
+package com.example.blogging_platform.serviceLayerTests;
 
 /**
  * @author Nicholas Nzovia

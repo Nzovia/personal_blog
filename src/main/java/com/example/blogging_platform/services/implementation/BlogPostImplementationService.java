@@ -40,10 +40,12 @@ public class BlogPostImplementationService implements BlogPostService {
             //save to the database
             var savedBlog = blogPostRepository.save(blogPost);
 
-            if(savedBlog == null){
+            if(savedBlog != null){
+                return "Blog Created Successfully";
+            }else{
                 return "Unable to Create Blog Post";
             }
-                return "Blog Created Successfully";
+
         }catch (Exception exception){
             throw new PostRequestException("Error occurred, unable to add new blog post");
         }

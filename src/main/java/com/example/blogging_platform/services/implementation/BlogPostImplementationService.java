@@ -1,10 +1,10 @@
 package com.example.blogging_platform.services.implementation;
 
-import com.example.blogging_platform.ExceptionHandling.PostRequestException;
-import com.example.blogging_platform.ExceptionHandling.NotFoundException;
+import com.example.blogging_platform.exception.PostRequestException;
+import com.example.blogging_platform.exception.NotFoundException;
 import com.example.blogging_platform.services.interfaces.BlogPostService;
-import com.example.blogging_platform.dtos.BlogPostDeleteResponse;
-import com.example.blogging_platform.dtos.BlogPostRequest;
+import com.example.blogging_platform.dtos.response.BlogPostDeleteResponse;
+import com.example.blogging_platform.dtos.request.BlogPostRequest;
 import com.example.blogging_platform.models.BlogPost;
 import com.example.blogging_platform.repositories.BlogPostRepository;
 import lombok.RequiredArgsConstructor;

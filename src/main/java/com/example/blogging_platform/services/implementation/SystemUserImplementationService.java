@@ -1,15 +1,15 @@
 package com.example.blogging_platform.services.implementation;
 
-import com.example.blogging_platform.ExceptionHandling.NotFoundException;
-import com.example.blogging_platform.ExceptionHandling.ResourceTakenException;
+import com.example.blogging_platform.exception.NotFoundException;
+import com.example.blogging_platform.exception.ResourceTakenException;
 import com.example.blogging_platform.jwt_security.JwtService;
 import com.example.blogging_platform.services.interfaces.SystemUserService;
 
 import com.example.blogging_platform.commons.StringResponse;
-import com.example.blogging_platform.dtos.SuccessResponse;
-import com.example.blogging_platform.dtos.SystemUserLoginRequest;
-import com.example.blogging_platform.dtos.SystemUserLoginResponse;
-import com.example.blogging_platform.dtos.SystemUserRequest;
+import com.example.blogging_platform.dtos.response.SuccessResponse;
+import com.example.blogging_platform.dtos.request.SystemUserLoginRequest;
+import com.example.blogging_platform.dtos.response.SystemUserLoginResponse;
+import com.example.blogging_platform.dtos.request.SystemUserRequest;
 import com.example.blogging_platform.models.Role;
 import com.example.blogging_platform.models.SystemUser;
 import com.example.blogging_platform.repositories.RolesRepository;

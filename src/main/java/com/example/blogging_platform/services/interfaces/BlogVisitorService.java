@@ -1,7 +1,7 @@
 package com.example.blogging_platform.services.interfaces;
 
-import com.example.blogging_platform.dtos.BlogCommentsRequest;
-import com.example.blogging_platform.dtos.BlogVisitorRequest;
+import com.example.blogging_platform.dtos.request.BlogCommentsRequest;
+import com.example.blogging_platform.dtos.request.BlogVisitorRequest;
 
 /**
  * @author Nicholas Nzovia

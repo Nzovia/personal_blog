@@ -1,4 +1,4 @@
-package com.example.blogging_platform.dtos;
+package com.example.blogging_platform.dtos.request;
 
 /**
  * @author Nicholas Nzovia
@@ -6,5 +6,5 @@ package com.example.blogging_platform.dtos;
  * @Contact: itsdevelopernic22@gmail.com
  */
 
-public class BlogCommentsRequest {
+public class BlogVisitorRequest {
 }

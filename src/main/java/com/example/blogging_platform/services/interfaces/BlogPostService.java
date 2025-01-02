@@ -1,7 +1,7 @@
 package com.example.blogging_platform.services.interfaces;
 
-import com.example.blogging_platform.dtos.BlogPostDeleteResponse;
-import com.example.blogging_platform.dtos.BlogPostRequest;
+import com.example.blogging_platform.dtos.response.BlogPostDeleteResponse;
+import com.example.blogging_platform.dtos.request.BlogPostRequest;
 import com.example.blogging_platform.models.BlogPost;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;

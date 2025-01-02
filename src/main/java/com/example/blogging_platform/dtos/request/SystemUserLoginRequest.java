@@ -1,4 +1,4 @@
-package com.example.blogging_platform.dtos;
+package com.example.blogging_platform.dtos.request;
 
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;

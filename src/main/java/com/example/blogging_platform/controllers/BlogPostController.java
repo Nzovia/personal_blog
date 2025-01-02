@@ -1,7 +1,7 @@
 package com.example.blogging_platform.controllers;
 
 import com.example.blogging_platform.services.interfaces.BlogPostService;
-import com.example.blogging_platform.dtos.BlogPostRequest;
+import com.example.blogging_platform.dtos.request.BlogPostRequest;
 import com.example.blogging_platform.models.BlogPost;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;

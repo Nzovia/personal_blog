@@ -1,4 +1,4 @@
-package com.example.blogging_platform.dtos;
+package com.example.blogging_platform.dtos.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

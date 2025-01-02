@@ -1,6 +1,6 @@
 package com.example.blogging_platform.jwt_security;
 
-import com.example.blogging_platform.ExceptionHandling.ExceptionResponseBody;
+import com.example.blogging_platform.exception.ExceptionResponseBody;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

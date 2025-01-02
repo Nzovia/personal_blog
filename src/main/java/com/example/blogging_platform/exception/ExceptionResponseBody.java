@@ -1,4 +1,4 @@
-package com.example.blogging_platform.ExceptionHandling;
+package com.example.blogging_platform.exception;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

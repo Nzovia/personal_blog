@@ -1,6 +1,6 @@
 package com.example.blogging_platform.services.implementation;
 
-import com.example.blogging_platform.ExceptionHandling.NotFoundException;
+import com.example.blogging_platform.exception.NotFoundException;
 import com.example.blogging_platform.models.SystemUser;
 import com.example.blogging_platform.repositories.SystemUserRepository;
 import lombok.RequiredArgsConstructor;

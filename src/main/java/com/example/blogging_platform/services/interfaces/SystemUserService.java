@@ -1,10 +1,10 @@
 package com.example.blogging_platform.services.interfaces;
 
 import com.example.blogging_platform.commons.StringResponse;
-import com.example.blogging_platform.dtos.SuccessResponse;
-import com.example.blogging_platform.dtos.SystemUserLoginRequest;
-import com.example.blogging_platform.dtos.SystemUserLoginResponse;
-import com.example.blogging_platform.dtos.SystemUserRequest;
+import com.example.blogging_platform.dtos.response.SuccessResponse;
+import com.example.blogging_platform.dtos.request.SystemUserLoginRequest;
+import com.example.blogging_platform.dtos.response.SystemUserLoginResponse;
+import com.example.blogging_platform.dtos.request.SystemUserRequest;
 import com.example.blogging_platform.models.SystemUser;
 import org.springframework.stereotype.Service;
 

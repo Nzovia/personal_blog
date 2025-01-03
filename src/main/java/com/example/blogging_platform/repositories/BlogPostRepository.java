@@ -7,6 +7,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @author Nicholas Nzovia
@@ -17,7 +18,7 @@ import java.util.List;
 @Repository
 public interface BlogPostRepository extends JpaRepository<BlogPost,Long> {
 
-    BlogPost findByUuid(String uuid);
+   BlogPost findByUuid(String uuid);
 
     void deleteByUuid(String uuid);
 

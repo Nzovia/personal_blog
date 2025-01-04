@@ -6,6 +6,7 @@ import com.example.blogging_platform.models.SystemUser;
 import com.example.blogging_platform.repositories.BlogPostRepository;
 import com.example.blogging_platform.repositories.RolesRepository;
 import com.example.blogging_platform.repositories.SystemUserRepository;
+import jakarta.validation.constraints.Null;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -74,11 +75,16 @@ class BlogPostRepositoryTest {
     @Test
     void testBlogPostFindByUuid() {
         BlogPost blogPost1 = blogPostRepository.findByUuid("blog1234");
-        assertNotNull(blogPost1, "BlogPost is null");
         assertThat(blogPost1.getBlogTitle()).isEqualTo(blogPost.getBlogTitle());
     }
 
     //Failure Test Case
+    @Test
+    void testblogPostFindByUuidFailed(){
+        BlogPost blogPost1 = blogPostRepository.findByUuid("blog12");
+        assertThat(blogPost1 == null).isTrue();
+    }
+
 
 
 

@@ -1,5 +1,6 @@
 package com.example.blogging_platform.services.implementation;
 
+import com.example.blogging_platform.dtos.request.SystemUserLoginRequest;
 import com.example.blogging_platform.dtos.request.SystemUserRequest;
 import com.example.blogging_platform.dtos.response.SuccessResponse;
 import com.example.blogging_platform.models.Role;
@@ -13,6 +14,8 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.time.LocalDateTime;
@@ -29,10 +32,14 @@ class SystemUserImplementationServiceTest {
     @Mock
     private SystemUserRepository systemUserRepository;
     private SystemUserService systemUserImplService;
+    private AuthenticationManager authenticationManager;
+    private Authentication authentication;
+
     AutoCloseable autoCloseable;
     SystemUser systemUser;
     SystemUserRequest signUpRequest;
-    SuccessResponse successResponse;
+    SuccessResponse signUpSuccessResponse;
+    SystemUserLoginRequest signInRequest;
 
     @BeforeEach
     void setUp() {
@@ -40,7 +47,7 @@ class SystemUserImplementationServiceTest {
 
         var passwordEncoder = mock(PasswordEncoder.class);
         var rolesRepository = mock(RolesRepository.class);
-        var authenticationManager = mock(AuthenticationManager.class);
+         authenticationManager = mock(AuthenticationManager.class);
 
         systemUserImplService = new SystemUserImplementationService(systemUserRepository, passwordEncoder,
                 authenticationManager, rolesRepository);
@@ -66,9 +73,14 @@ class SystemUserImplementationServiceTest {
                 "12345678"
         );
 
-        successResponse = new SuccessResponse(
+        signUpSuccessResponse = new SuccessResponse(
                 200,
                 "User account Created"
+        );
+
+        signInRequest = new SystemUserLoginRequest(
+                systemUser.getUserEmail(),
+                systemUser.getUserPassword()
         );
 
     }
@@ -83,13 +95,25 @@ class SystemUserImplementationServiceTest {
         mock(SystemUserRepository.class);
 
         when(systemUserRepository.save(systemUser)).thenReturn(systemUser);
-        assertThat(systemUserImplService.systemUserSignUp(signUpRequest).getSuccessMessage()).isEqualTo(successResponse.getSuccessMessage());
-        assertThat(systemUserImplService.systemUserSignUp(signUpRequest).getStatus()).isEqualTo(successResponse.getStatus());
+        assertThat(systemUserImplService.systemUserSignUp(signUpRequest).getSuccessMessage()).isEqualTo(signUpSuccessResponse.getSuccessMessage());
+        assertThat(systemUserImplService.systemUserSignUp(signUpRequest).getStatus()).isEqualTo(signUpSuccessResponse.getStatus());
 
     }
 
     @Test
     void systemUserLogin() {
+        // Simulate successful authentication by mocking behavior
+        when(authentication.isAuthenticated()).thenReturn(true);
+
+        UsernamePasswordAuthenticationToken authenticationToken =
+                new UsernamePasswordAuthenticationToken(signInRequest.getEmail(), signInRequest.getPassword());
+
+        authenticationToken.setAuthenticated(true);
+
+
+        when(authenticationManager.authenticate(authenticationToken)).thenReturn(authentication);
+        assertThat(systemUserImplService.systemUserLogin(signInRequest).getMessage()).isEqualTo("Authentication Successful");
+
     }
 
     @Test

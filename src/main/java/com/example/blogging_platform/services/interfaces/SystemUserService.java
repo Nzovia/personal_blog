@@ -5,6 +5,7 @@ import com.example.blogging_platform.dtos.response.SuccessResponse;
 import com.example.blogging_platform.dtos.request.SystemUserLoginRequest;
 import com.example.blogging_platform.dtos.response.SystemUserLoginResponse;
 import com.example.blogging_platform.dtos.request.SystemUserRequest;
+import com.example.blogging_platform.dtos.response.UserProfileResponse;
 import com.example.blogging_platform.models.SystemUser;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +19,6 @@ import org.springframework.stereotype.Service;
 public interface SystemUserService {
     SuccessResponse systemUserSignUp(SystemUserRequest systemUserRequest);
     SystemUserLoginResponse systemUserLogin(SystemUserLoginRequest systemUserLoginRequest);
-    SystemUser getSystemUserProfile(String uuid);
+    UserProfileResponse getSystemUserProfile(String uuid);
     StringResponse assignRolesToAUser(String userId, String roleId);
 }

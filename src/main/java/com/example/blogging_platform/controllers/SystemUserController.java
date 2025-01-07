@@ -1,5 +1,6 @@
 package com.example.blogging_platform.controllers;
 
+import com.example.blogging_platform.dtos.response.UserProfileResponse;
 import com.example.blogging_platform.services.interfaces.SystemUserService;
 import com.example.blogging_platform.commons.StringResponse;
 import com.example.blogging_platform.dtos.response.SuccessResponse;
@@ -29,15 +30,15 @@ public class SystemUserController {
     }
     //@PreAuthorize("hasRole('ADMIN')")
     @PostMapping("sign_up")
-    public ResponseEntity<SuccessResponse> CreateSystemUserAccount(@RequestBody SystemUserRequest systemUserRequest){
+    public ResponseEntity<SuccessResponse> createSystemUserAccount(@RequestBody SystemUserRequest systemUserRequest){
         return  new ResponseEntity<>(systemUserService.systemUserSignUp(systemUserRequest), HttpStatus.OK);
     }
     @PostMapping("sign_in")
-    public ResponseEntity<SystemUserLoginResponse> SystemUserLogin(@Valid @RequestBody SystemUserLoginRequest loginRequest){
+    public ResponseEntity<SystemUserLoginResponse> systemUserLogin(@Valid @RequestBody SystemUserLoginRequest loginRequest){
         return new ResponseEntity<>(systemUserService.systemUserLogin(loginRequest), HttpStatus.OK);
     }
     @GetMapping("/me/{uuid}")
-    public ResponseEntity<SystemUser> getUserProfile(@PathVariable String uuid){
+    public ResponseEntity<UserProfileResponse> getUserProfile(@PathVariable String uuid){
         return new ResponseEntity<>(systemUserService.getSystemUserProfile(uuid), HttpStatus.OK);
     }
     @PreAuthorize("hasRole('ADMIN')")

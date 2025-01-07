@@ -1,5 +1,6 @@
 package com.example.blogging_platform.repositoryTests;
 
+import com.example.blogging_platform.dtos.response.UserProfileResponse;
 import com.example.blogging_platform.models.BlogPost;
 import com.example.blogging_platform.models.Role;
 import com.example.blogging_platform.models.SystemUser;
@@ -36,6 +37,7 @@ class BlogPostRepositoryTest {
     private RolesRepository rolesRepository;
     BlogPost blogPost;
     SystemUser systemUser;
+    UserProfileResponse profile;
     Role role;
 
     @BeforeEach

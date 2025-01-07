@@ -1,5 +1,6 @@
 package com.example.blogging_platform.services.implementation;
 
+import com.example.blogging_platform.dtos.response.UserProfileResponse;
 import com.example.blogging_platform.exception.NotFoundException;
 import com.example.blogging_platform.exception.ResourceTakenException;
 import com.example.blogging_platform.jwt_security.JwtService;
@@ -118,8 +119,17 @@ public class SystemUserImplementationService implements SystemUserService {
 
     //Getting User Profile details
     @Override
-    public SystemUser getSystemUserProfile(String uuid) {
-        return systemUserRepository.findByUuid(uuid);
+    public UserProfileResponse getSystemUserProfile(String uuid) {
+        UserProfileResponse profile = new UserProfileResponse();
+        SystemUser user =  systemUserRepository.findByUuid(uuid);
+        if(user != null){
+            profile.setFirstName(user.getFirstName());
+            profile.setLastName(user.getLastName());
+            profile.setUsername(user.getUserName());
+            profile.setEmail(user.getUserEmail());
+        }
+
+        return profile;
     }
 
     private LocalDateTime getCurrentLocalDateTime() {

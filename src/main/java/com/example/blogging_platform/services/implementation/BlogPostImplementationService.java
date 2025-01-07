@@ -13,9 +13,11 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import static com.example.blogging_platform.utils.GenerateRandomUUIDUtil.generateUniqueUUIDString;
+import static com.example.blogging_platform.utils.GetCurrentLoggedInUserDetails.getCurrentUser;
 
 /**
  * @author Nicholas Nzovia
@@ -26,61 +28,60 @@ import static com.example.blogging_platform.utils.GenerateRandomUUIDUtil.generat
 @RequiredArgsConstructor
 public class BlogPostImplementationService implements BlogPostService {
     private final BlogPostRepository blogPostRepository;
+
     @Override
     public String createBlogPost(BlogPostRequest blogPostRequest) throws PostRequestException {
         BlogPost blogPost = new BlogPost();
-        try{
+        var userDetails = getCurrentUser();
+        try {
             blogPost.setUuid(generateUniqueUUIDString());
             blogPost.setBlogTitle(blogPostRequest.getBlogTitle());
             blogPost.setBlogSubTitles(blogPostRequest.getBlogSubTitles());
             blogPost.setBlogDescription(blogPostRequest.getBlogDescription());
-            blogPost.setCreatedBy(""); //Todo. Get currently login user uuid -> add util service GetCurrently login user
-            blogPost.setCreatedAt(null); //Todo. Create a util function to format date into a specific way that will posted here
+            blogPost.setCreatedBy(userDetails.getUsername());
+            blogPost.setCreatedAt(LocalDateTime.now());
 
             //save to the database
-            var savedBlog = blogPostRepository.save(blogPost);
+            blogPostRepository.save(blogPost);
 
-            if(savedBlog != null){
-                return "Blog Created Successfully";
-            }else{
-                return "Unable to Create Blog Post";
-            }
+            return "Blog Created Successfully";
 
-        }catch (Exception exception){
+
+        } catch (Exception exception) {
             throw new PostRequestException("Error occurred, unable to add new blog post");
         }
     }
+
     @Override
     public BlogPost updateBlogPost(BlogPostRequest blogPostRequest, String uuid)
             throws NotFoundException {
         //check if the post exists.
-        try{
+        try {
             BlogPost blogPost = blogPostRepository.findByUuid(uuid);
-            if(blogPost == null){
-                throw new NotFoundException("Blog post with uuid "+uuid+" is not found");
-            }
-            else{
+            if (blogPost == null) {
+                throw new NotFoundException("Blog post with uuid " + uuid + " is not found");
+            } else {
                 blogPost.setBlogTitle(blogPostRequest.getBlogTitle());
                 blogPost.setBlogSubTitles(blogPostRequest.getBlogSubTitles());
                 blogPost.setBlogDescription(blogPostRequest.getBlogDescription());
-                blogPost.setUpdatedBy(""); //Todo. Get currently login user uuid -> add util service GetCurrently login user
-                blogPost.setUpdatedAt(null); //todo. getDate from util functions
+                blogPost.setUpdatedBy(getCurrentUser().getUsername());
+                blogPost.setUpdatedAt(LocalDateTime.now());
 
                 blogPostRepository.save(blogPost);
             }
-            return  blogPost;
+            return blogPost;
 
-        }catch (Exception e){
+        } catch (Exception e) {
             throw new NotFoundException(e.getMessage());
         }
     }
 
     @Override
-    public Page<BlogPost> listAllBlogPosts(int pageNo, int pageSize) throws PostRequestException{
-        try{
+    public Page<BlogPost> listAllBlogPosts(int pageNo, int pageSize) throws PostRequestException {
+        try {
             Pageable pageable = PageRequest.of(pageNo, pageSize);
             return blogPostRepository.findAll(pageable);
-        }catch (Exception e){
+        } catch (Exception e) {
             throw new PostRequestException("Error occurred while retrieving blog posts");
         }
     }
@@ -89,14 +90,14 @@ public class BlogPostImplementationService implements BlogPostService {
     public BlogPost getBlogPostByUuid(String uuid) throws NotFoundException {
         BlogPost foundBlogPost = blogPostRepository.findByUuid(uuid);
         String message = "Unable to retrieve BlogPost";
-        try{
-            if(foundBlogPost ==null){
+        try {
+            if (foundBlogPost == null) {
                 throw new NotFoundException(message);
-            }else {
+            } else {
                 return foundBlogPost;
             }
 
-        }catch (Exception exception){
+        } catch (Exception exception) {
             throw new NotFoundException(message);
         }
     }
@@ -105,21 +106,22 @@ public class BlogPostImplementationService implements BlogPostService {
     public List<BlogPost> searchBlogPostByBlogName(String searchText) {
         return blogPostRepository.findBlogPostsBySearchText(searchText);
     }
+
     @Override
     public BlogPostDeleteResponse deleteBlogPostByUUid(String uuid) {
         BlogPost foundBlogPostToDelete = blogPostRepository.findByUuid(uuid);
         BlogPostDeleteResponse response = new BlogPostDeleteResponse();
         response.setDeletionMessage("BlogPost Deleted Successfully");
         String message = "Unable to retrieve BlogPost";
-        try{
-            if(foundBlogPostToDelete ==null){
+        try {
+            if (foundBlogPostToDelete == null) {
                 throw new NotFoundException(message);
-            }else {
+            } else {
                 blogPostRepository.deleteByUuid(uuid);
                 return response;
             }
 
-        }catch (Exception exception){
+        } catch (Exception exception) {
             throw new NotFoundException(message);
         }
 

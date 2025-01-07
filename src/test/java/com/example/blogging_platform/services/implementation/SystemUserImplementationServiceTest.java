@@ -122,5 +122,6 @@ class SystemUserImplementationServiceTest {
 
     @Test
     void getSystemUserProfile() {
+
     }
 }

@@ -23,12 +23,12 @@ import java.util.List;
 public class BlogPostController {
     private final BlogPostService blogPostService;
     @PostMapping("add")
-    private ResponseEntity<String> addBlogPost(@RequestBody BlogPostRequest request){
+    public ResponseEntity<String> addBlogPost(@RequestBody BlogPostRequest request){
         var blogCreated = blogPostService.createBlogPost(request);
         return new ResponseEntity<>(blogCreated,HttpStatus.CREATED);
     }
     @GetMapping("search")
-    private ResponseEntity<List<BlogPost>>
+    public ResponseEntity<List<BlogPost>>
     searchBlogPosts(@RequestParam String searchText){
         List<BlogPost> foundBlogPosts = blogPostService.searchBlogPostByBlogName(searchText);
         if(!foundBlogPosts.isEmpty()){
@@ -38,18 +38,18 @@ public class BlogPostController {
         }
     }
     @PutMapping("edit/{uuid}")
-    private ResponseEntity<BlogPost> updateBlogPostTitleOrDescription(
+    public ResponseEntity<BlogPost> updateBlogPostTitleOrDescription(
             @PathVariable String uuid, @RequestBody BlogPostRequest blogPostRequest){
        var updateBlogPost =  blogPostService.updateBlogPost(blogPostRequest,uuid);
        return  ResponseEntity.ok(updateBlogPost);
     }
     @DeleteMapping("delete/{uuid}")
-    private ResponseEntity<String> deleteBlogPostByUuid(@PathVariable String uuid){
+    public ResponseEntity<String> deleteBlogPostByUuid(@PathVariable String uuid){
         var deleteResponse = blogPostService.deleteBlogPostByUUid(uuid);
         return ResponseEntity.ok(deleteResponse.defaultDeletionMessage());
     }
     @GetMapping("all")
-    private ResponseEntity<Page<BlogPost>>  getAllBlogPosts(
+    public ResponseEntity<Page<BlogPost>>  getAllBlogPosts(
             @RequestParam(defaultValue = "0") int pageNo,
             @RequestParam(defaultValue = "10") int pageSize
     ){
@@ -57,7 +57,7 @@ public class BlogPostController {
         return ResponseEntity.ok(allBlogPosts);
     }
     @GetMapping("one/{uuid}")
-    private ResponseEntity<BlogPost> getOneBlogPost(@PathVariable String uuid){
+    public ResponseEntity<BlogPost> getOneBlogPost(@PathVariable String uuid){
         var blogPost = blogPostService.getBlogPostByUuid(uuid);
         return ResponseEntity.ok(blogPost);
     }

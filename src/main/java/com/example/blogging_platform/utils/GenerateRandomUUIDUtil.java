@@ -13,10 +13,11 @@ import java.util.Locale;
 
 @Slf4j
 public class GenerateRandomUUIDUtil {
+    private GenerateRandomUUIDUtil() {
+    }
+
     public static String generateUniqueUUIDString(){
-        String uniqueUUID = RandomStringUtils.randomAlphanumeric(12).toLowerCase(Locale.ROOT);
-        log.info("UUID generated"+uniqueUUID);
-        return uniqueUUID;
+        return RandomStringUtils.randomAlphanumeric(12).toLowerCase(Locale.ROOT);
     }
 
 }

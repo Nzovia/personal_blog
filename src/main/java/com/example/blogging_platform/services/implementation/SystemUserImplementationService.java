@@ -26,6 +26,7 @@ import java.time.LocalDateTime;
 import java.util.Optional;
 
 import static com.example.blogging_platform.utils.GenerateRandomUUIDUtil.generateUniqueUUIDString;
+import static com.example.blogging_platform.utils.GenerateUserName.generateUserName;
 
 /**
  * @author Nicholas Nzovia
@@ -69,6 +70,7 @@ public class SystemUserImplementationService implements SystemUserService {
            systemUser.setFirstName(systemUserRequest.getFirstName());
            systemUser.setLastName(systemUserRequest.getLastName());
            systemUser.setUserEmail(systemUserRequest.getUserEmail());
+           systemUser.setUserName(generateUserName(systemUserRequest.getFirstName(),systemUserRequest.getLastName()));
            systemUser.setUserPassword(passwordEncoder.encode(systemUserRequest.getUserPassword()));
            systemUser.setCreatedAt(getCurrentLocalDateTime());
            systemUserRepository.save(systemUser);

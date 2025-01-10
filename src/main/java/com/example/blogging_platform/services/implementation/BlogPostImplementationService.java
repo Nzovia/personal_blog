@@ -53,7 +53,6 @@ public class BlogPostImplementationService implements BlogPostService {
 
 
         } catch (Exception exception) {
-            exception.printStackTrace();
             throw new PostRequestException("Error occurred, unable to add new blog post");
         }
     }
@@ -85,7 +84,13 @@ public class BlogPostImplementationService implements BlogPostService {
     public Page<BlogPost> listAllBlogPosts(int pageNo, int pageSize) throws PostRequestException {
         try {
             Pageable pageable = PageRequest.of(pageNo, pageSize);
-            return blogPostRepository.findAll(pageable);
+            Page<BlogPost> result = blogPostRepository.findAll(pageable);
+            if (result.hasContent()) {
+                return result;
+            } else {
+                // Log or return a custom message if no content
+                return Page.empty();
+            }
         } catch (Exception e) {
             throw new PostRequestException("Error occurred while retrieving blog posts");
         }

@@ -1,5 +1,6 @@
 package com.example.blogging_platform.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
@@ -26,5 +27,6 @@ public class BlogPostDiscussion {
             name = "blog_post_uuid",
             referencedColumnName = "uuid",
             nullable = false)
+    @JsonBackReference
     private BlogPost blogPost;
 }

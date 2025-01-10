@@ -1,6 +1,7 @@
 package com.example.blogging_platform.models;
 
 import com.example.blogging_platform.commons.PO;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
@@ -28,6 +29,7 @@ public class BlogPost extends PO {
     @Column(name = "blog_description")
     private String blogTitleDescription;
     @OneToMany(mappedBy = "blogPost", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
     private List<BlogPostDiscussion> blogPostDiscussions = new ArrayList<>();
 
     //OneUser creates many BlogPosts

@@ -62,5 +62,5 @@ public class BlogPostController {
         return ResponseEntity.ok(blogPost);
     }
 
-    //Todo. share api, to generate a link and share.
+    //Todo. share api, to generate a link and share via email.
 }

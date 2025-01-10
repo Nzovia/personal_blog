@@ -60,7 +60,7 @@ class BlogPostRepositoryTest {
         blogPost = new BlogPost(
                 1L, "blog1234", "", LocalDateTime.now(),
                 "", LocalDateTime.now(),
-                "Java Blog", "Learning Java", "Here Testing Java", systemUser);
+                "Java Blog", "Learning Java", systemUser);
         blogPostRepository.save(blogPost);
     }
 

@@ -6,6 +6,8 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Nicholas Nzovia
@@ -23,11 +25,11 @@ public class BlogPost extends PO {
     @NotBlank(message = "title required")
     private String blogTitle;
 
-    @Column(name = "blog_sub_title")
-    private String blogSubTitles;
-    @Column(name = "blog_body")
-    @NotBlank(message = "description required")
-    private String blogDescription;
+    @Column(name = "blog_title")
+    @NotBlank(message = "title required")
+    private String blogTitleDescription;
+    @OneToMany(mappedBy = "tb_blog_posts", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<BlogPostDiscussion> blogPostDiscussions = new ArrayList<>();
 
     //OneUser creates many BlogPosts
     @ManyToOne(cascade = CascadeType.ALL)
@@ -38,12 +40,11 @@ public class BlogPost extends PO {
     private SystemUser systemUser;
 
     public BlogPost(Long id, String uuid, String createdBy, LocalDateTime createdAt,
-                    String updatedBy, LocalDateTime updatedAt, String blogTitle, String blogSubTitles,
-                    String blogDescription, SystemUser systemUser) {
+                    String updatedBy, LocalDateTime updatedAt, String blogTitle, String blogTitleDescription,
+                     SystemUser systemUser) {
         super(id, uuid, createdBy, createdAt, updatedBy, updatedAt);
         this.blogTitle = blogTitle;
-        this.blogSubTitles = blogSubTitles;
-        this.blogDescription = blogDescription;
+        this.blogTitleDescription = blogTitleDescription;
         this.systemUser = systemUser;
     }
 }

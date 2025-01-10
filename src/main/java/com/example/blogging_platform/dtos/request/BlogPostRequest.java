@@ -15,6 +15,6 @@ import lombok.Setter;
 @AllArgsConstructor
 public class BlogPostRequest {
     private String blogTitle;
-    private String blogSubTitles;
+    private String blogTitleDescription;
     private String blogDescription;
 }

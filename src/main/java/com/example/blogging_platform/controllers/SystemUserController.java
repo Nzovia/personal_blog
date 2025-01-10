@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("api/v1/users/")
 public class SystemUserController {
-    private  SystemUserService systemUserService;
+    private  final SystemUserService systemUserService;
 
     public SystemUserController(SystemUserService systemUserService) {
         this.systemUserService = systemUserService;

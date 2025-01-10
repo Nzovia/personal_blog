@@ -36,8 +36,7 @@ public class BlogPostImplementationService implements BlogPostService {
         try {
             blogPost.setUuid(generateUniqueUUIDString());
             blogPost.setBlogTitle(blogPostRequest.getBlogTitle());
-            blogPost.setBlogSubTitles(blogPostRequest.getBlogSubTitles());
-            blogPost.setBlogDescription(blogPostRequest.getBlogDescription());
+            blogPost.setBlogTitleDescription(blogPostRequest.getBlogTitleDescription());
             blogPost.setCreatedBy(userDetails.getUsername());
             blogPost.setCreatedAt(LocalDateTime.now());
 
@@ -62,8 +61,7 @@ public class BlogPostImplementationService implements BlogPostService {
                 throw new NotFoundException("Blog post with uuid " + uuid + " is not found");
             } else {
                 blogPost.setBlogTitle(blogPostRequest.getBlogTitle());
-                blogPost.setBlogSubTitles(blogPostRequest.getBlogSubTitles());
-                blogPost.setBlogDescription(blogPostRequest.getBlogDescription());
+                blogPost.setBlogTitleDescription(blogPostRequest.getBlogTitleDescription());
                 blogPost.setUpdatedBy(getCurrentUser().getUsername());
                 blogPost.setUpdatedAt(LocalDateTime.now());
 

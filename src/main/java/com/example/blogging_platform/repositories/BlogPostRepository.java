@@ -25,8 +25,7 @@ public interface BlogPostRepository extends JpaRepository<BlogPost,Long> {
     @Query(
          "SELECT b FROM BlogPost  b WHERE LOWER(b.blogTitle)" +
                  " LIKE LOWER(CONCAT('%',:searchText,'%')) OR" +
-                 " LOWER(b.blogSubTitles) LIKE LOWER(CONCAT('%',:searchText,'%')) OR" +
-                 " LOWER(b.blogDescription) LIKE LOWER(CONCAT('%',:searchText,'%'))"
+                 " LOWER(b.blogTitle) LIKE LOWER(CONCAT('%',:searchText,'%'))"
     )
     List<BlogPost> findBlogPostsBySearchText(@Param("searchText") String searchText);
 }

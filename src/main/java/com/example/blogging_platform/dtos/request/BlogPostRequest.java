@@ -1,8 +1,11 @@
 package com.example.blogging_platform.dtos.request;
 
+import com.example.blogging_platform.models.BlogPostDiscussion;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.List;
 
 /**
  * @author Nicholas Nzovia
@@ -16,5 +19,5 @@ import lombok.Setter;
 public class BlogPostRequest {
     private String blogTitle;
     private String blogTitleDescription;
-    private String blogDescription;
+    private List<BlogPostDiscussion> blogPostDiscussions;
 }

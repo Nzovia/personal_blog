@@ -25,10 +25,9 @@ public class BlogPost extends PO {
     @NotBlank(message = "title required")
     private String blogTitle;
 
-    @Column(name = "blog_title")
-    @NotBlank(message = "title required")
+    @Column(name = "blog_description")
     private String blogTitleDescription;
-    @OneToMany(mappedBy = "tb_blog_posts", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "blogPost", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<BlogPostDiscussion> blogPostDiscussions = new ArrayList<>();
 
     //OneUser creates many BlogPosts

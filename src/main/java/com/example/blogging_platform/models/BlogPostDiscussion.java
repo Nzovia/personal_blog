@@ -22,6 +22,9 @@ public class BlogPostDiscussion {
     private String blogPostContent;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "uuid", nullable = false)
+    @JoinColumn(
+            name = "blog_post_uuid",
+            referencedColumnName = "uuid",
+            nullable = false)
     private BlogPost blogPost;
 }

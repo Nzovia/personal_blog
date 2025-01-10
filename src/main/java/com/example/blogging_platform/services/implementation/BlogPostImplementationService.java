@@ -2,6 +2,7 @@ package com.example.blogging_platform.services.implementation;
 
 import com.example.blogging_platform.exception.PostRequestException;
 import com.example.blogging_platform.exception.NotFoundException;
+import com.example.blogging_platform.models.BlogPostDiscussion;
 import com.example.blogging_platform.services.interfaces.BlogPostService;
 import com.example.blogging_platform.dtos.response.BlogPostDeleteResponse;
 import com.example.blogging_platform.dtos.request.BlogPostRequest;
@@ -37,6 +38,11 @@ public class BlogPostImplementationService implements BlogPostService {
             blogPost.setUuid(generateUniqueUUIDString());
             blogPost.setBlogTitle(blogPostRequest.getBlogTitle());
             blogPost.setBlogTitleDescription(blogPostRequest.getBlogTitleDescription());
+            for (BlogPostDiscussion discussion : blogPostRequest.getBlogPostDiscussions()) {
+                discussion.setDiscussionUuid(generateUniqueUUIDString());
+                discussion.setBlogPost(blogPost);
+                blogPost.getBlogPostDiscussions().add(discussion);
+            }
             blogPost.setCreatedBy(userDetails.getUsername());
             blogPost.setCreatedAt(LocalDateTime.now());
 
@@ -47,6 +53,7 @@ public class BlogPostImplementationService implements BlogPostService {
 
 
         } catch (Exception exception) {
+            exception.printStackTrace();
             throw new PostRequestException("Error occurred, unable to add new blog post");
         }
     }

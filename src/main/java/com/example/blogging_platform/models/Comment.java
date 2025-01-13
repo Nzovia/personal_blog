@@ -1,6 +1,7 @@
 package com.example.blogging_platform.models;
 
 import com.example.blogging_platform.commons.PO;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
@@ -28,6 +29,7 @@ public class Comment extends PO {
             name = "blog_uuid",
             referencedColumnName = "uuid"
     )
+    @JsonBackReference
     private BlogPost blogPost;
 
     //Many comments made by one visitor

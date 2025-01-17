@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @author Nicholas Nzovia
@@ -38,7 +39,7 @@ public class BlogPostController {
         }
     }
     @PutMapping("edit/{uuid}")
-    public ResponseEntity<BlogPost> updateBlogPostTitleOrDescription(
+    public ResponseEntity<Optional<BlogPost>> updateBlogPostTitleOrDescription(
             @PathVariable String uuid, @RequestBody BlogPostRequest blogPostRequest){
        var updateBlogPost =  blogPostService.updateBlogPost(blogPostRequest,uuid);
        return  ResponseEntity.ok(updateBlogPost);
@@ -57,7 +58,7 @@ public class BlogPostController {
         return ResponseEntity.ok(allBlogPosts);
     }
     @GetMapping("one/{uuid}")
-    public ResponseEntity<BlogPost> getOneBlogPost(@PathVariable String uuid){
+    public ResponseEntity<Optional<BlogPost>> getOneBlogPost(@PathVariable String uuid){
         var blogPost = blogPostService.getBlogPostByUuid(uuid);
         return ResponseEntity.ok(blogPost);
     }

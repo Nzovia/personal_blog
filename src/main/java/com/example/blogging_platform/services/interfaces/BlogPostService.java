@@ -7,6 +7,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @author Nicholas Nzovia
@@ -17,9 +18,9 @@ import java.util.List;
 @Service
 public interface BlogPostService {
     String createBlogPost(BlogPostRequest blogPostRequest);
-    BlogPost updateBlogPost(BlogPostRequest blogPostRequest, String uuid);
+    Optional<BlogPost> updateBlogPost(BlogPostRequest blogPostRequest, String uuid);
     Page<BlogPost> listAllBlogPosts(int pageNo,int pageSize);
-    BlogPost getBlogPostByUuid(String uuid);
+    Optional<BlogPost> getBlogPostByUuid(String uuid);
     List<BlogPost> searchBlogPostByBlogName(String searchText);
     BlogPostDeleteResponse deleteBlogPostByUUid(String uuid);
 }

@@ -59,7 +59,7 @@ public class BlogPostImplementationService implements BlogPostService {
     }
 
     @Override
-    public BlogPost updateBlogPost(BlogPostRequest blogPostRequest, String uuid)
+    public Optional<BlogPost> updateBlogPost(BlogPostRequest blogPostRequest, String uuid)
             throws NotFoundException {
         //check if the post exists.
         try {
@@ -98,11 +98,11 @@ public class BlogPostImplementationService implements BlogPostService {
     }
 
     @Override
-    public BlogPost getBlogPostByUuid(String uuid) throws NotFoundException {
-        BlogPost foundBlogPost = blogPostRepository.findByUuid(uuid);
+    public Optional<BlogPost> getBlogPostByUuid(String uuid) throws NotFoundException {
+        Optional<BlogPost> foundBlogPost = blogPostRepository.findByUuid(uuid);
         String message = "Unable to retrieve BlogPost";
         try {
-            if (foundBlogPost == null) {
+            if (foundBlogPost.isEmpty()) {
                 throw new NotFoundException(message);
             } else {
                 return foundBlogPost;
@@ -120,12 +120,12 @@ public class BlogPostImplementationService implements BlogPostService {
 
     @Override
     public BlogPostDeleteResponse deleteBlogPostByUUid(String uuid) {
-        BlogPost foundBlogPostToDelete = blogPostRepository.findByUuid(uuid);
+        Optional<BlogPost> foundBlogPostToDelete = blogPostRepository.findByUuid(uuid);
         BlogPostDeleteResponse response = new BlogPostDeleteResponse();
         response.setDeletionMessage("BlogPost Deleted Successfully");
         String message = "Unable to retrieve BlogPost";
         try {
-            if (foundBlogPostToDelete == null) {
+            if (foundBlogPostToDelete.isEmpty()) {
                 throw new NotFoundException(message);
             } else {
                 blogPostRepository.deleteByUuid(uuid);

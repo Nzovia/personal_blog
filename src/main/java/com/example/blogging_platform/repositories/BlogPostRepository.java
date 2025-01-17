@@ -18,7 +18,7 @@ import java.util.Optional;
 @Repository
 public interface BlogPostRepository extends JpaRepository<BlogPost,Long> {
 
-   BlogPost findByUuid(String uuid);
+   Optional<BlogPost> findByUuid(String uuid);
 
     void deleteByUuid(String uuid);
 

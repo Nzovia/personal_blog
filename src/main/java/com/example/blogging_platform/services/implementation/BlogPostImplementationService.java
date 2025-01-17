@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 import static com.example.blogging_platform.utils.GenerateRandomUUIDUtil.generateUniqueUUIDString;
 import static com.example.blogging_platform.utils.GetCurrentLoggedInUserDetails.getCurrentUser;
@@ -62,16 +63,16 @@ public class BlogPostImplementationService implements BlogPostService {
             throws NotFoundException {
         //check if the post exists.
         try {
-            BlogPost blogPost = blogPostRepository.findByUuid(uuid);
-            if (blogPost == null) {
+            Optional<BlogPost> blogPost = blogPostRepository.findByUuid(uuid);
+            if (blogPost.isEmpty()) {
                 throw new NotFoundException("Blog post with uuid " + uuid + " is not found");
             } else {
-                blogPost.setBlogTitle(blogPostRequest.getBlogTitle());
-                blogPost.setBlogTitleDescription(blogPostRequest.getBlogTitleDescription());
-                blogPost.setUpdatedBy(getCurrentUser().getUsername());
-                blogPost.setUpdatedAt(LocalDateTime.now());
+                blogPost.get().setBlogTitle(blogPostRequest.getBlogTitle());
+                blogPost.get().setBlogTitleDescription(blogPostRequest.getBlogTitleDescription());
+                blogPost.get().setUpdatedBy(getCurrentUser().getUsername());
+                blogPost.get().setUpdatedAt(LocalDateTime.now());
 
-                blogPostRepository.save(blogPost);
+                blogPostRepository.save(blogPost.get());
             }
             return blogPost;
 

@@ -21,7 +21,7 @@ import lombok.*;
 public class Comment extends PO {
     @Column(name = "comment_body")
     @NotBlank(message = "commentBody is required")
-    private String commentBody;
+    private String comment;
 
     //many comments are associated to one BlogPost
     @ManyToOne
@@ -32,11 +32,5 @@ public class Comment extends PO {
     @JsonBackReference
     private BlogPost blogPost;
 
-    //Many comments made by one visitor
-    @ManyToOne
-    @JoinColumn(
-            name = "visitor_uuid",
-            referencedColumnName = "uuid"
-    )
-    private BlogVisitor blogVisitor;
+    private String commentAuthor;
 }

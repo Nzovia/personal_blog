@@ -16,6 +16,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 import java.time.LocalDateTime;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -76,15 +77,15 @@ class BlogPostRepositoryTest {
     // Success Test Case
     @Test
     void testBlogPostFindByUuid() {
-        BlogPost blogPost1 = blogPostRepository.findByUuid("blog1234");
-        assertThat(blogPost1.getBlogTitle()).isEqualTo(blogPost.getBlogTitle());
+        Optional<BlogPost> blogPost1 = blogPostRepository.findByUuid("blog1234");
+        assertThat(blogPost1.get().getBlogTitle()).isEqualTo(blogPost.getBlogTitle());
     }
 
     //Failure Test Case
     @Test
     void testblogPostFindByUuidFailed(){
-        BlogPost blogPost1 = blogPostRepository.findByUuid("blog12");
-        assertThat(blogPost1 == null).isTrue();
+        Optional<BlogPost> blogPost1 = blogPostRepository.findByUuid("blog12");
+        assertThat(blogPost1.get() == null).isTrue();
     }
 
 

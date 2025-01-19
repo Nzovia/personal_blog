@@ -10,7 +10,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class CommentDto {
-    private String blogPostId;
+    private String blogPostUuid;
     private String comment;
     //private String authorId; //get currently signed in user
 }

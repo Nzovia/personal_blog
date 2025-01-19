@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface CommentsService {
     public StringResponse addBlogPostComment(CommentDto commentBody);
-    public String deleteCommentFromBlogPost(String commentId);
-    public String updateComment(String commentId, String commentBody);
+    public StringResponse deleteCommentFromBlogPost(String commentId);
+    public StringResponse updateComment(String commentId, String commentBody);
     public List<Comment> retrieveAllBlogPostComments();
 }

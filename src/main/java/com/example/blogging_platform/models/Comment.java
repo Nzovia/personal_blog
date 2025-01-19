@@ -31,6 +31,4 @@ public class Comment extends PO {
     )
     @JsonBackReference
     private BlogPost blogPost;
-
-    private String commentAuthor;
 }

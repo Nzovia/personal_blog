@@ -57,9 +57,4 @@ public class CommentServiceImpl implements CommentsService {
     public StringResponse updateComment(String commentId, String commentBody) {
         return new StringResponse("Comment Updated");
     }
-
-    @Override
-    public List<Comment> retrieveAllBlogPostComments() {
-        return List.of();
-    }
 }

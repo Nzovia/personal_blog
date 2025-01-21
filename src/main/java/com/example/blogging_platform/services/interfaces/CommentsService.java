@@ -10,5 +10,4 @@ public interface CommentsService {
     public StringResponse addBlogPostComment(CommentDto commentBody);
     public StringResponse deleteCommentFromBlogPost(String commentId);
     public StringResponse updateComment(String commentId, String commentBody);
-    public List<Comment> retrieveAllBlogPostComments();
 }

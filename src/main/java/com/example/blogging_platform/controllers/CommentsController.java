@@ -22,7 +22,7 @@ public class CommentsController {
     }
 
     @DeleteMapping("comment/{uuid}")
-    public ResponseEntity<StringResponse>deleteComment(@PathVariable String commentId){
-        return  ResponseEntity.ok(commentsService.deleteCommentFromBlogPost(commentId));
+    public ResponseEntity<StringResponse>deleteComment(@PathVariable String uuid){
+        return  ResponseEntity.ok(commentsService.deleteCommentFromBlogPost(uuid));
     }
 }

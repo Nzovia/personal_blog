@@ -4,7 +4,10 @@ import com.example.blogging_platform.commons.PO;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -21,6 +24,7 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 public class BlogPost extends PO {
     @Column(name = "blog_title")
     @NotBlank(message = "title required")
@@ -40,12 +44,13 @@ public class BlogPost extends PO {
     )
     private SystemUser systemUser;
 
-    public BlogPost(Long id, String uuid, String createdBy, LocalDateTime createdAt,
-                    String updatedBy, LocalDateTime updatedAt, String blogTitle, String blogTitleDescription,
-                     SystemUser systemUser) {
-        super(id, uuid, createdBy, createdAt, updatedBy, updatedAt);
-        this.blogTitle = blogTitle;
-        this.blogTitleDescription = blogTitleDescription;
-        this.systemUser = systemUser;
+    @OneToMany(mappedBy = "blogPost", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
+    private List<Comment> comments = new ArrayList<>();
+
+    public BlogPost(long l, String blog1234, String s, LocalDateTime now,
+                    String s1, LocalDateTime now1, String javaBlog,
+                    String learningJava, SystemUser systemUser) {
     }
+
 }
